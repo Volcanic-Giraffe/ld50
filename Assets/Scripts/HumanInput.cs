@@ -27,6 +27,7 @@ public class HumanInput : MonoBehaviour
             _inputs = Vector3.zero;
             _inputs.x = Input.GetAxis("Horizontal");
             _inputs.z = Input.GetAxis("Vertical");
+            _inputs = Quaternion.AngleAxis(Camera.main.transform.rotation.eulerAngles.y, Vector3.up) * _inputs;
             
             _hero.LookAt(_inputs);
         }
