@@ -13,7 +13,7 @@ public class ArkCameraFollow : MonoBehaviour
         {
             var pos = transform.position;
 
-            transform.position = new Vector3(pos.x, Target.transform.position.y, pos.z);
+            transform.position = new Vector3(pos.x, Target.transform.position.y + 1.5f, pos.z);
         }
     }
 }
