@@ -29,7 +29,7 @@ public class PanHero : MonoBehaviour
 
     public void LookAt(Vector3 target)
     {
-        if (target != Vector3.zero) transform.forward = target;
+        //if (target != Vector3.zero) transform.forward = target;
     }
 
     public void Jump()
@@ -83,20 +83,6 @@ public class PanHero : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Cast 4 rays, get 4 hits, calculate normal from plane
-        //RaycastHit lr, rr, lf, rf;
-        //Physics.Raycast(_body.position + Vector3.up - Vector3.right, Vector3.down, out lr);
-        //Physics.Raycast(_body.position + Vector3.up + Vector3.right, Vector3.down, out rr);
-        //Physics.Raycast(_body.position + Vector3.up - Vector3.forward, Vector3.down, out lf);
-        //Physics.Raycast(_body.position + Vector3.up + Vector3.forward, Vector3.down, out rf);
-        //var upDir = (Vector3.Cross(rr.point - Vector3.up, lr.point - Vector3.up) +
-        //         Vector3.Cross(lr.point - Vector3.up, lf.point - Vector3.up) +
-        //         Vector3.Cross(lf.point - Vector3.up, rf.point - Vector3.up) +
-        //         Vector3.Cross(rf.point - Vector3.up, rr.point - Vector3.up)
-        //        ).normalized;
-
-        //transform.up = upDir;
-
         var ray = new Ray(transform.position, -transform.up); // cast ray downwards
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
