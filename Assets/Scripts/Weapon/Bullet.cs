@@ -25,4 +25,21 @@ public class Bullet : MonoBehaviour
     {
         _rig.velocity = transform.forward * (_speed * Time.fixedDeltaTime);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        var dmg = other.gameObject.GetComponent<Damageable>();
+
+        if (dmg == null)
+        {
+            dmg = other.gameObject.GetComponentInParent<Damageable>();
+        }
+        
+        if (dmg != null)
+        {
+            dmg.Hit(gameObject, Config.Damage);
+        }
+        
+        Destroy(gameObject);
+    }
 }

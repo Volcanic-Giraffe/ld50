@@ -6,8 +6,6 @@ public class Damageable : MonoBehaviour
     [SerializeField] private float maxHealth;
     [SerializeField] private float health;
 
-    [SerializeField] private int team;
-
     public bool Died => _died;
 
     public float MaxHealth => maxHealth;
