@@ -846,11 +846,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BpongHeroHitter
       objectReference: {fileID: 0}
-    - target: {fileID: 7072113934226583612, guid: 4a8bbbec2b6dab3498e2512466e98670,
-        type: 3}
-      propertyPath: jumpForce
-      value: 150
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a8bbbec2b6dab3498e2512466e98670, type: 3}
 --- !u!1001 &3669991830916861364
