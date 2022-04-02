@@ -76,7 +76,7 @@ public class AiInput : MonoBehaviour
             if (raycast)
             {
                 _targetPos = hit.point;
-                // Debug.DrawLine (candidate, hit.point, Color.red, 2f);
+                Debug.DrawLine (candidate, hit.point, Color.red, 2f);
                 break;
             }
         }
