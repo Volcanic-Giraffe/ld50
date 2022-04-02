@@ -80,10 +80,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockContainer: {fileID: 5613764061516682915}
   blockGO: {fileID: 2076916107640327276, guid: 8415dee4fef0dbe4993981265a49ef60, type: 3}
+  blockSolidGO: {fileID: 2919917734894889794, guid: 4c5e19713454e5749811ecc6b394fef9,
+    type: 3}
   columnsCount: 10
   rowsCount: 50
   rowDist: 3
   blockChance: 0.8
+  solidPerRowMin: 6
+  solidPerRowMax: 8
 --- !u!1001 &120716950910111659
 PrefabInstance:
   m_ObjectHideFlags: 0

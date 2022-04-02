@@ -5,17 +5,37 @@ using UnityEngine;
 
 public class ArkAimer : MonoBehaviour
 {
+    [SerializeField] private Transform chargeIndicator;
+    [SerializeField] private float chargeSpeed;
+    [SerializeField] private float chargeMax;
+    
     public Camera Camera;
     public ArkHero ArkHero;
 
-    private bool _doJump;
+    private bool _beginCharge;
+    private bool _releaseCharge;
+
+    private float _chargeTime;
     
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            _doJump = true;
+            _beginCharge = true;
+            _chargeTime = 0;
         }
+        if (Input.GetMouseButtonUp(0))
+        {
+            _releaseCharge = true;
+        }
+
+        if (_beginCharge && !_releaseCharge)
+        {
+            _chargeTime += Time.deltaTime * chargeSpeed;
+            _chargeTime = Mathf.Min(_chargeTime, chargeMax);
+        }
+        var scale = Mathf.Max(((_chargeTime * 3f) / chargeMax), 1f);
+        chargeIndicator.localScale = Vector3.one * scale;
     }
 
     private void FixedUpdate()
@@ -35,10 +55,13 @@ public class ArkAimer : MonoBehaviour
             transform.position = hit.point;
         }
 
-        if (_doJump)
+        if (_releaseCharge)
         {
-            _doJump = false;
-            ArkHero.PewJump(transform.position);
+            ArkHero.ReleaseCharge(transform.position, _chargeTime);
+            
+            _beginCharge = false;
+            _releaseCharge = false;
+            _chargeTime = 0;
         }
     }
 }

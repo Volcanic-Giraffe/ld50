@@ -34,8 +34,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - ArkWall
+  - ArkDeathRay
   - ArkBlock
   - ArkInputPane
   m_SortingLayers:
