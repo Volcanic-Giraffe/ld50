@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PanHero : MonoBehaviour
 {
+    [SerializeField] private Transform handAnchor;
+    
     public float Speed = 5f;
     public float JumpHeight = 2f;
     public float GroundDistance = 0.2f;
@@ -70,7 +72,13 @@ public class PanHero : MonoBehaviour
 
         if (PanLevel.Instance.Aimer != null)
         {
-            _weapon.AimAt(PanLevel.Instance.Aimer.AimPoint());
+            var target = PanLevel.Instance.Aimer.AimPoint();
+            
+            var dir = target - handAnchor.transform.position;
+
+            handAnchor.transform.right = dir;
+            
+            _weapon.AimAt(target);
         }
     }
   

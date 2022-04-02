@@ -28,8 +28,10 @@ public class PanLevel : MonoBehaviour
     {
         var bulletObj = Instantiate(config.Prefab, bulletsContainer);
         bulletObj.transform.position = position;
+
+        bulletObj.transform.rotation = rotation;
         
-        bulletObj.transform.rotation = Quaternion.Euler(0, rotation.eulerAngles.y, 0);
+        // bulletObj.transform.rotation = Quaternion.Euler(0, rotation.eulerAngles.y, 0);
         
         var bullet = bulletObj.GetComponent<Bullet>();
 
