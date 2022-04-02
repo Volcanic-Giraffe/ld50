@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 2178035354485886659}
   - component: {fileID: 557642188888159447}
   - component: {fileID: 1918040973419984829}
+  - component: {fileID: 2940534307612996046}
   m_Layer: 10
   m_Name: PanHero
   m_TagString: Player
@@ -200,6 +201,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b102ea150ca8cd45bd99586cc5bd22c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2940534307612996046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2962530558003526969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1651521c189d0274ba7b9996f3169a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  health: 10
 --- !u!1 &4802802884992147459
 GameObject:
   m_ObjectHideFlags: 0
