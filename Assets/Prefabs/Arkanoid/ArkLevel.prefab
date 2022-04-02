@@ -86,7 +86,7 @@ MonoBehaviour:
   rowsCount: 50
   rowDist: 3
   blockChance: 0.8
-  solidPerRowMin: 5
+  solidPerRowMin: 6
   solidPerRowMax: 8
 --- !u!1001 &120716950910111659
 PrefabInstance:
