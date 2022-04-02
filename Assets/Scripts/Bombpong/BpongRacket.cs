@@ -24,13 +24,13 @@ public class BpongRacket : MonoBehaviour
         // Debug.Log("### mxy: " + mouseX + " " + mouseY);
         if (Input.GetMouseButtonDown(0))
         {
-            _rig.AddTorque(new Vector3(0,0,inputForce));
+            _rig.AddTorque(new Vector3(0,0,inputForce), ForceMode.Impulse);
         }
         
         if (Input.GetMouseButtonDown(1))
         {
             
-            _rig.AddTorque(new Vector3(0,0,-inputForce));
+            _rig.AddTorque(new Vector3(0,0,-inputForce), ForceMode.Impulse);
         }
     }
 }
