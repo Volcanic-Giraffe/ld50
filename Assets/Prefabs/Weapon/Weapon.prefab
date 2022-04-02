@@ -257,7 +257,7 @@ MonoBehaviour:
       Prefab: {fileID: 3048618270277323054, guid: 1d5b9abd8e056ea41ada3d1148974f84,
         type: 3}
       Damage: 2
-      Speed: 500
+      Speed: 10
 --- !u!1 &7875125093077076693
 GameObject:
   m_ObjectHideFlags: 0
