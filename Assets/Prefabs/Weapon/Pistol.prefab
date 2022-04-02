@@ -41,8 +41,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7202756646448901806}
   - component: {fileID: 7202756646448901807}
+  - component: {fileID: -7683248001427231049}
   m_Layer: 0
-  m_Name: Weapon
+  m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90,6 +91,26 @@ MonoBehaviour:
         type: 3}
       Damage: 5
       Speed: 500
+--- !u!114 &-7683248001427231049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7202756646448901804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b61c0cb015793a468a4e753404fad6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponSR: {fileID: 6926098612511185920}
+  muzzleSR: {fileID: 0}
+  muzzleFlashSide: {fileID: 21300000, guid: 3f283e66f17b3fb4da8b1c94b6bac716, type: 3}
+  muzzleFlashForward: {fileID: 21300000, guid: fb4b2c52d97dd2e4d8c2d4493c7cbd5a, type: 3}
+  weaponLeft: {fileID: 21300000, guid: 2a6eb7aba8d86534a8bc94159657fefd, type: 3}
+  weaponRight: {fileID: 21300000, guid: 989b5e31558c09f4a843588117e019fd, type: 3}
+  weaponForward: {fileID: 21300000, guid: dd024872668ba3e498c35590e22a5112, type: 3}
+  weaponBackward: {fileID: 21300000, guid: 6b0e9aa3ff75b2a4481ee7afc0369521, type: 3}
 --- !u!1 &7875125093077076693
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,7 +123,7 @@ GameObject:
   - component: {fileID: 6926098612511185920}
   - component: {fileID: 4651610824052153634}
   m_Layer: 0
-  m_Name: Art
+  m_Name: WeaponSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

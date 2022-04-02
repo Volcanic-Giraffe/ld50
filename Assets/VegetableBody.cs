@@ -22,6 +22,7 @@ public class VegetableBody : MonoBehaviour
     {
         _hero = GetComponent<PanHero>();
         _rb = GetComponent<Rigidbody>();
+        UpdateBody();
     }
 
     // Update is called once per frame
@@ -38,8 +39,8 @@ public class VegetableBody : MonoBehaviour
 
     private void UpdateBody()
     {
-        // Works weird when on opposite side =(
-        if(_rb.velocity.magnitude < 0.01 || Vector3.Dot(_rb.velocity, Camera.main.transform.position-transform.position)>=0)
+        var velocityXZ = new Vector2(_rb.velocity.x, _rb.velocity.z);
+        if (_rb.velocity.magnitude < 0.01 || Vector3.Dot(_rb.velocity, Camera.main.transform.position-transform.position)>=0)
         {
             if (!lookFront)
             {

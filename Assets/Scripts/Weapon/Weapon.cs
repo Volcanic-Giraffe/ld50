@@ -25,6 +25,11 @@ public class Weapon : MonoBehaviour
     private void Start()
     {
         SetBulletsInClip(config.ClipSize);
+        var sprc = GetComponentInChildren<WeaponSpriteController>();
+        if(sprc != null)
+        {
+            sprc.SetParent(GetComponentInParent<PanHero>().gameObject);
+        }
     }
 
     private void Update()
