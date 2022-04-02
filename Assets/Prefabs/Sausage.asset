@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5418d2ca86dec3043be93b6cfa75a295, type: 3}
+  m_Name: Sausage
+  m_EditorClassIdentifier: 
+  Name: Carrot
+  Front1: {fileID: 21300000, guid: e7d243e61f4f8ca4996b3713f42f8f64, type: 3}
+  Front2: {fileID: 21300000, guid: c09d0ffe218e36645b3ddac8faeae20c, type: 3}
+  Front3: {fileID: 21300000, guid: 9ceaba195ddc477498270abb2bde3b99, type: 3}
+  Back1: {fileID: 21300000, guid: 5154731f14e3d3e48b53b2e6b80529eb, type: 3}
+  Back2: {fileID: 21300000, guid: ffb51f755ca761448b1f52991ec71325, type: 3}
+  Back3: {fileID: 21300000, guid: a37d84585b496ce478074da4031f5361, type: 3}
