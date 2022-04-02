@@ -10,6 +10,7 @@ public class Damageable : MonoBehaviour
 
     public float MaxHealth => maxHealth;
     public float CurrentHealth => health;
+    public float Percent  => health / maxHealth;
 
     private bool _died;
 

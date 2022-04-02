@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(PanHero))]
+[RequireComponent(typeof(Damageable))]
 public class VegetableBody : MonoBehaviour
 {
     [SerializeField] BodyDataSO bodyData;
@@ -13,14 +13,14 @@ public class VegetableBody : MonoBehaviour
     [SerializeField] SpriteRenderer PupilLeft;
     [SerializeField] SpriteRenderer PupilRight;
     [SerializeField] SpriteRenderer Mouth;
-    private PanHero _hero;
+    private Damageable _dmg;
     private Rigidbody _rb;
     private float bodySwitchTimer = 0;
     private bool lookFront;
 
     void Start()
     {
-        _hero = GetComponent<PanHero>();
+        _dmg = GetComponent<Damageable>();
         _rb = GetComponent<Rigidbody>();
         UpdateBody();
     }
@@ -39,7 +39,6 @@ public class VegetableBody : MonoBehaviour
 
     private void UpdateBody()
     {
-        var velocityXZ = new Vector2(_rb.velocity.x, _rb.velocity.z);
         if (_rb.velocity.magnitude < 0.01 || Vector3.Dot(_rb.velocity, Camera.main.transform.position-transform.position)>=0)
         {
             if (!lookFront)
@@ -63,14 +62,25 @@ public class VegetableBody : MonoBehaviour
                 }
             }
         }
+
+        if (_dmg.Percent > 0.6)
+        {
+            BodySprite.sprite = lookFront ? bodyData.Front1 : bodyData.Back1;
+        }
+        else if (_dmg.Percent > 0.3)
+        {
+            BodySprite.sprite = lookFront ? bodyData.Front2 : bodyData.Back2;
+        }
+        else
+        {
+            BodySprite.sprite = lookFront ? bodyData.Front3 : bodyData.Back3;
+        }
     }
 
     private void SetLookFront(bool v)
     {
         bodySwitchTimer = 0;
         lookFront = v;
-        // TODO switch dmg percent
-        BodySprite.sprite = v ? bodyData.Front1 : bodyData.Back1;
         EyeLeft.gameObject.SetActive(v);
         EyeRight.gameObject.SetActive(v);
         Mouth.gameObject.SetActive(v);

@@ -90,7 +90,7 @@ MonoBehaviour:
     BulletConfig:
       Prefab: {fileID: 3048618270277323054, guid: 1d5b9abd8e056ea41ada3d1148974f84,
         type: 3}
-      Damage: 5
+      Damage: 2
       Speed: 30
 --- !u!114 &-7683248001427231049
 MonoBehaviour:
