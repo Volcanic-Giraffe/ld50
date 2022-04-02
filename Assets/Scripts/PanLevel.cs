@@ -12,6 +12,8 @@ public class PanLevel : MonoBehaviour
     
     public static PanLevel Instance;
 
+    public PanHero Player { get; set; }
+    
     public List<Bullet> Bullets { get; private set; }
 
     private void Awake()
@@ -19,10 +21,12 @@ public class PanLevel : MonoBehaviour
         Instance = FindObjectOfType<PanLevel>();
 
         Aimer = FindObjectOfType<PanAimer>();
-
-
+        
+        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PanHero>();
+        
         Bullets = new List<Bullet>();
     }
+
 
     public void SpawnBullet(BulletConfig config, Vector3 position, Quaternion rotation)
     {
