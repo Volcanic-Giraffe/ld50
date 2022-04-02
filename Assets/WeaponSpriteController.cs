@@ -13,6 +13,7 @@ public class WeaponSpriteController : MonoBehaviour
     [SerializeField] Sprite weaponForward;
     [SerializeField] Sprite weaponBackward;
     private GameObject rotateAnchor;
+    private float angle;
 
     public void SetParent(GameObject go)
     {
@@ -24,26 +25,10 @@ public class WeaponSpriteController : MonoBehaviour
     {
         if (!rotateAnchor) return;
         var camVector = transform.position - Camera.main.transform.position;
-        // 4 сектора, довернем на 45 для легкости расчетов
-        var angle = Vector3.SignedAngle(camVector, transform.position - rotateAnchor.transform.position, Vector3.up) + 45;
-
-        if (angle > 0) { 
-            if(angle < 90)
-            {
-                weaponSR.sprite = weaponLeft;
-            } else
-            {
-                weaponSR.sprite = weaponBackward;
-            }
-        } else {
-            if (angle > -90)
-            {
-                weaponSR.sprite = weaponForward;
-            }
-            else
-            {
-                weaponSR.sprite = weaponRight;
-            }
-        }
+        angle = Vector3.SignedAngle(camVector, transform.position - rotateAnchor.transform.position, Vector3.up);
+        if (angle < 45 && angle > -45) weaponSR.sprite = weaponBackward;
+        if (angle > 45 && angle < 135) weaponSR.sprite = weaponRight;
+        if (angle > 135 || angle < -135) weaponSR.sprite = weaponForward;
+        if (angle < -45  && angle > -135) weaponSR.sprite = weaponLeft;
     }
 }
