@@ -71,6 +71,7 @@ public class Weapon : MonoBehaviour
             var rot = muzzle.transform.rotation * Quaternion.Euler(0, 0, Random.Range(-config.Spread, config.Spread));
 
             PanLevel.Instance.SpawnBullet(config.BulletConfig, pos, rot);
+            if (!Config.Auto) ReleaseTrigger();
         }
         
         SetBulletsInClip(_bulletsInClip - 1);
@@ -121,6 +122,8 @@ public class WeaponConfig
 
     public float ReloadTime;
     public int ClipSize;
+
+    public bool Auto;
 
     public BulletConfig BulletConfig;
 }

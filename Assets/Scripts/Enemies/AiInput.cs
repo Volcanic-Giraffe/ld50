@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,7 +25,8 @@ public class AiInput : MonoBehaviour
             _character.LookAt(_target.transform.position);
             _character.AimAt(_target.transform.position);
 
-            _character.HoldTrigger();
+            // TODO raycast visibility, bursts, etc
+            if(Random.value > 0.7f) _character.HoldTrigger();
         }
   
     }

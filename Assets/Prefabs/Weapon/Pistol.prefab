@@ -81,16 +81,17 @@ MonoBehaviour:
   muzzle: {fileID: 6399866229986902092}
   config:
     Title: Gun
-    FireDelay: 1
+    FireDelay: 0.3
     Spread: 1
     Pellets: 1
     ReloadTime: 2
     ClipSize: 15
+    Auto: 0
     BulletConfig:
       Prefab: {fileID: 3048618270277323054, guid: 1d5b9abd8e056ea41ada3d1148974f84,
         type: 3}
       Damage: 5
-      Speed: 10
+      Speed: 30
 --- !u!114 &-7683248001427231049
 MonoBehaviour:
   m_ObjectHideFlags: 0
