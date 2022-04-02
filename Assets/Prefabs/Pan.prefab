@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 84734469426029050}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 84734469915550728}
   - component: {fileID: 84734469915550729}
   - component: {fileID: 84734469915550730}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 84734470474063272}
   - component: {fileID: 84734470474063273}
   - component: {fileID: 84734470474063274}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 84734471194486991}
   - component: {fileID: 84734471194486984}
   - component: {fileID: 84734471194486985}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -412,6 +412,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: dish
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a019263e2a5390c419c4ca599de6bca6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a019263e2a5390c419c4ca599de6bca6, type: 3}
