@@ -41,7 +41,7 @@ public class BpongHeroHitter : MonoBehaviour
         if(_smackCD <=0 && Input.GetButton("Fire1"))
         {
             _smack = true;
-            _smackCD = 0.5f;
+            _smackCD = 0.2f;
         }
         SmackEffect.SetActive(_smack);
     }
