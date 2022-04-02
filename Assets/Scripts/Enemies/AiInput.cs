@@ -67,15 +67,16 @@ public class AiInput : MonoBehaviour
         {
             var angle = Random.value * Mathf.PI * 2f;
             var x = Mathf.Cos(angle) * newPositionRadius;
-            var y = Mathf.Sin(angle) * newPositionRadius;
+            var z = Mathf.Sin(angle) * newPositionRadius;
 
-            var candidate = transform.position + new Vector3(x, y + 5f, 0); // +5 so always above the pan
+            var candidate = transform.position + new Vector3(x, 5f, z); // +5 so always above the pan
             
             var raycast = Physics.Raycast(candidate, -Vector3.up, out var hit, 10f, mask);
 
             if (raycast)
             {
                 _targetPos = hit.point;
+                Debug.DrawLine (candidate, hit.point, Color.red, 2f);
                 break;
             }
         }
