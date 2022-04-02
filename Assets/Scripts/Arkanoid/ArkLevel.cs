@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -23,27 +24,49 @@ public class ArkLevel : MonoBehaviour
         
         for (int row = 0; row < rowsCount; row++)
         {
-            var solidCount = 0;
-            var solidExpected = Random.Range(solidPerRowMin, solidPerRowMax);
+            var solidExpected = Math.Min(columnsCount, Random.Range(solidPerRowMin, solidPerRowMax));
+
+            var blocks = new List<string>();
+
+            for (int i = 0; i < solidExpected; i++)
+            {
+                blocks.Add("solid");
+            }
+            
+            for (int col = solidExpected; col < columnsCount; col++)
+            {
+                
+                if (Random.value <= blockChance)
+                {
+                    blocks.Add("regular");
+                }
+                else
+                {
+                    blocks.Add("empty");
+                }
+            }
+
+            blocks = blocks.Shuffle().ToList();
             
             for (int col = 0; col < columnsCount; col++)
             {
                 float blockX = col;
                 float blockY = row * rowDist;
 
-                var blockToMakeGO = blockGO;
+                var blockType = blocks[col];
+
                 
-                if (Random.value <= 0.5f && solidCount < solidExpected)
+                if (blocks[col] != "empty")
                 {
-                    solidCount += 1;
-                    blockToMakeGO = blockSolidGO;
-                }
-                var block = Instantiate(blockToMakeGO, blockContainer, true);
-                block.transform.localPosition = new Vector3(blockX, blockY, 0f);
+                    var blockToMakeGO = blockGO;
                 
-                if (Random.value >= blockChance)
-                {
-                    Destroy(block);
+                    if (blocks[col] == "solid")
+                    {
+                        blockToMakeGO = blockSolidGO;
+                    }
+                    
+                    var block = Instantiate(blockToMakeGO, blockContainer, true);
+                    block.transform.localPosition = new Vector3(blockX, blockY, 0f);
                 }
             }
         }
