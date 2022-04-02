@@ -14,6 +14,13 @@ public class PanHero : MonoBehaviour
     private Vector3 _inputs = Vector3.zero;
     private bool _isGrounded = true;
 
+    private Weapon _weapon;
+
+    private void Awake()
+    {
+        _weapon = GetComponentInChildren<Weapon>();
+    }
+
     void Start()
     {
         _body = GetComponent<Rigidbody>();
@@ -40,8 +47,27 @@ public class PanHero : MonoBehaviour
             _body.AddForce(dashVelocity, ForceMode.VelocityChange);
         }
 
+        UpdateWeapon();
+
     }
 
+    private void UpdateWeapon()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            if (_weapon != null)
+            {
+                _weapon.HoldTrigger();
+            }
+        }
+        if (Input.GetButtonUp("Fire1"))
+        {
+            if (_weapon != null)
+            {
+                _weapon.ReleaseTrigger();
+            }
+        }
+    }
   
 
     void FixedUpdate()
