@@ -66,7 +66,6 @@ public class VegetableBody : MonoBehaviour
 
     private void SetLookFront(bool v)
     {
-        Debug.Log($"Switching {v}");
         bodySwitchTimer = 0;
         lookFront = v;
         // TODO switch dmg percent
