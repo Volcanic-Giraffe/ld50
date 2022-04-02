@@ -15,15 +15,16 @@ public class ArkHero : MonoBehaviour
         _rig = GetComponent<Rigidbody>();
     }
 
-    public void PewJump(Vector3 aimerPos)
+    public void ReleaseCharge(Vector3 aimerPos, float chargeTime)
     {
-        _rig.AddForce((transform.position - aimerPos) * jumpForce);
+        _rig.AddForce((transform.position - aimerPos).normalized * (jumpForce * chargeTime));
 
         var pew = Instantiate(ArkPewGO);
 
         pew.transform.localPosition = transform.localPosition;
 
         var pewComp = pew.GetComponent<ArkPew>();
-        pewComp.Shoot(aimerPos);
+        pewComp.Shoot(aimerPos, chargeTime);
+        
     }
 }

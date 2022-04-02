@@ -18,13 +18,19 @@ public class ArkPew : MonoBehaviour
     {
         if (other.CompareTag("ArkBlock"))
         {
-            Destroy(other.gameObject);
+            var block = other.gameObject.GetComponent<ArkBlock>();
+
+            if (block != null && !block.IsSolid)
+            {
+                Destroy(other.gameObject);
+            }
+            
             Destroy(gameObject);
         }
     }
 
-    public void Shoot(Vector3 aimerPos)
+    public void Shoot(Vector3 aimerPos, float chargeTime)
     {
-        _rig.AddForce((aimerPos - transform.position) * speed);
+        _rig.AddForce((aimerPos - transform.position).normalized * (speed * chargeTime));
     }
 }
