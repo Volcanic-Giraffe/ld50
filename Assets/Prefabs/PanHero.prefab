@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2962530558003526851}
   - component: {fileID: 2962530558003526852}
   - component: {fileID: 2178035354485886659}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PanHero
   m_TagString: Untagged
   m_Icon: {fileID: 0}

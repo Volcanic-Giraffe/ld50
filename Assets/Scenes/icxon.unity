@@ -305,6 +305,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PanHero
       objectReference: {fileID: 0}
+    - target: {fileID: 2962530558226920505, guid: 433de2d128b5aa144b8e5cfc0cfed197,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 433de2d128b5aa144b8e5cfc0cfed197, type: 3}
 --- !u!1 &821169118
@@ -319,8 +324,8 @@ GameObject:
   - component: {fileID: 821169121}
   - component: {fileID: 821169120}
   - component: {fileID: 821169119}
-  m_Layer: 0
-  m_Name: Cube
+  m_Layer: 6
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -333,7 +338,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 821169118}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: def8ec46c67a58e45a714533f1fb4323, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -617,17 +622,17 @@ PrefabInstance:
     - target: {fileID: 7202756646448901806, guid: 1b9031ddef40b10429040d6bdd3d8b81,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.883
       objectReference: {fileID: 0}
     - target: {fileID: 7202756646448901806, guid: 1b9031ddef40b10429040d6bdd3d8b81,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.13999987
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 7202756646448901806, guid: 1b9031ddef40b10429040d6bdd3d8b81,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.362
       objectReference: {fileID: 0}
     - target: {fileID: 7202756646448901806, guid: 1b9031ddef40b10429040d6bdd3d8b81,
         type: 3}
