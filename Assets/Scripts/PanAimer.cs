@@ -13,6 +13,10 @@ public class PanAimer : MonoBehaviour
         }
     }
 
+    public Vector3 AimPoint()
+    {
+        return transform.position + Vector3.up * 1.5f;
+    }
     private void FixedUpdate()
     {
         RaycastHit hit;

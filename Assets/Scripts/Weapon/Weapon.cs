@@ -99,6 +99,11 @@ public class Weapon : MonoBehaviour
         
         OnClipUpdated?.Invoke(bullets, config.ClipSize);
     }
+
+    public void AimAt(Vector3 target)
+    {
+        muzzle.LookAt(target);
+    }
 }
 
 [Serializable]

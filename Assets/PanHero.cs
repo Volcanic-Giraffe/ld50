@@ -67,6 +67,11 @@ public class PanHero : MonoBehaviour
                 _weapon.ReleaseTrigger();
             }
         }
+
+        if (PanLevel.Instance.Aimer != null)
+        {
+            _weapon.AimAt(PanLevel.Instance.Aimer.AimPoint());
+        }
     }
   
 
