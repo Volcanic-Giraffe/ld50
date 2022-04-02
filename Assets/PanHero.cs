@@ -17,9 +17,13 @@ public class PanHero : MonoBehaviour
 
     private Weapon _weapon;
 
+    public Damageable Damageable { get; private set; }
+    public Weapon Weapon => _weapon;
+    
     private void Awake()
     {
         _weapon = GetComponentInChildren<Weapon>();
+        Damageable = GetComponent<Damageable>();
     }
 
     void Start()
