@@ -247,16 +247,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   muzzle: {fileID: 6399866229986902092}
   config:
-    Title: Gun
+    Title: GunWeak
     FireDelay: 0.1
     Spread: 1
     Pellets: 1
-    ReloadTime: 3
-    ClipSize: 30
+    ReloadTime: 1.2
+    ClipSize: 10
     BulletConfig:
       Prefab: {fileID: 3048618270277323054, guid: 1d5b9abd8e056ea41ada3d1148974f84,
         type: 3}
-      Damage: 5
+      Damage: 2
       Speed: 500
 --- !u!1 &7875125093077076693
 GameObject:
