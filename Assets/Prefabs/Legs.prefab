@@ -176,6 +176,7 @@ GameObject:
   - component: {fileID: 7427933053619789393}
   - component: {fileID: 7827104528026454082}
   - component: {fileID: 1028023911458629571}
+  - component: {fileID: 1244840211426133518}
   m_Layer: 16
   m_Name: LegR
   m_TagString: Untagged
@@ -296,7 +297,7 @@ ConfigurableJoint:
   m_YMotion: 0
   m_ZMotion: 0
   m_AngularXMotion: 2
-  m_AngularYMotion: 2
+  m_AngularYMotion: 0
   m_AngularZMotion: 2
   m_LinearLimitSpring:
     spring: 0
@@ -373,6 +374,18 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1244840211426133518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923643815630939058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34a8559720a59bb46b13f7111cb68b16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5564813425392901344
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,6 +400,7 @@ GameObject:
   - component: {fileID: 5902411608894189658}
   - component: {fileID: 8694849300442767160}
   - component: {fileID: 7575640362142007123}
+  - component: {fileID: 6123336939909707650}
   m_Layer: 16
   m_Name: LegL
   m_TagString: Untagged
@@ -507,7 +521,7 @@ ConfigurableJoint:
   m_YMotion: 0
   m_ZMotion: 0
   m_AngularXMotion: 2
-  m_AngularYMotion: 2
+  m_AngularYMotion: 0
   m_AngularZMotion: 2
   m_LinearLimitSpring:
     spring: 0
@@ -584,6 +598,18 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &6123336939909707650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5564813425392901344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34a8559720a59bb46b13f7111cb68b16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5992120374737769856
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,7 +744,7 @@ ConfigurableJoint:
   m_YMotion: 0
   m_ZMotion: 0
   m_AngularXMotion: 2
-  m_AngularYMotion: 2
+  m_AngularYMotion: 0
   m_AngularZMotion: 2
   m_LinearLimitSpring:
     spring: 0
@@ -929,7 +955,7 @@ ConfigurableJoint:
   m_YMotion: 0
   m_ZMotion: 0
   m_AngularXMotion: 2
-  m_AngularYMotion: 2
+  m_AngularYMotion: 0
   m_AngularZMotion: 2
   m_LinearLimitSpring:
     spring: 0
