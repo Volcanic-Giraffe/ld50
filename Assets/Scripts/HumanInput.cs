@@ -51,6 +51,11 @@ public class HumanInput : MonoBehaviour
             _hero.ReleaseTrigger();
         }
         
+        if (Input.GetButtonUp("Reload"))
+        {
+            _hero.Weapon.StartReloading();
+        }
+        
         if (PanLevel.Instance.Aimer != null)
         {
             var target = PanLevel.Instance.Aimer.AimPoint();
