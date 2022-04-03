@@ -23,7 +23,7 @@ public class PanLevel : MonoBehaviour
     
     public List<Transform> Boxes { get; private set; }
     public List<Bullet> Bullets { get; private set; }
-    public List<Transform> Characters { get; private set; }
+    public List<AiInput> Enemies { get; private set; }
 
     private List<Vector3> _occupied;
     
@@ -39,7 +39,7 @@ public class PanLevel : MonoBehaviour
         
         Bullets = new List<Bullet>();
         Boxes = new List<Transform>();
-        Characters = new List<Transform>();
+        Enemies = new List<AiInput>();
 
         _occupied = new List<Vector3>();
 
@@ -48,15 +48,38 @@ public class PanLevel : MonoBehaviour
             _occupied.Add(Player.transform.position);
         }
     }
-
     private void Start()
     {
+        FindExistingEnemies();
+        
         if (generateOnStart)
         {
             SpawnLevelWave();
         }
     }
 
+    private void FindExistingEnemies()
+    {
+        var foundEnemies = FindObjectsOfType<AiInput>();
+
+        foreach (var enemy in foundEnemies)
+        {
+            AddExistingEnemy(enemy);
+        }
+    }
+
+    public void AddExistingEnemy(AiInput enemy)
+    {
+        if (Enemies.Contains(enemy)) return;
+        
+        Enemies.Add(enemy);
+
+        enemy.Damageable.OnDie += () =>
+        {
+            Enemies.Remove(enemy);
+        };
+    }
+    
     public void SpawnBullet(BulletConfig config, Vector3 position, Quaternion rotation, int team)
     {
         var bulletObj = Instantiate(config.Prefab, bulletsContainer);
@@ -80,7 +103,15 @@ public class PanLevel : MonoBehaviour
         {
             var enemyGO =  levelGenConfig.EnemiesGO.PickRandom();
             var enemyObj = Instantiate(enemyGO, charactersContainer, true);
-            PlaceWithAttempts(enemyObj, _occupied, levelGenConfig.SpawnRadius, levelGenConfig.EnemiesSpacing);
+            if (PlaceWithAttempts(enemyObj, _occupied, levelGenConfig.SpawnRadius, levelGenConfig.EnemiesSpacing))
+            {
+                var enemyComp = enemyObj.GetComponent<AiInput>();
+
+                if (enemyComp != null)
+                {
+                    AddExistingEnemy(enemyComp);
+                }
+            }
         }
         
         // props
@@ -93,7 +124,7 @@ public class PanLevel : MonoBehaviour
         }
     }
 
-    private void PlaceWithAttempts(GameObject item, List<Vector3> existing, float radius, float spacing)
+    private bool PlaceWithAttempts(GameObject item, List<Vector3> existing, float radius, float spacing)
     {
         for (int i = 0; i < PlaceAttempts; i++)
         {
@@ -105,11 +136,12 @@ public class PanLevel : MonoBehaviour
             {
                 item.transform.localPosition = point;
                 existing.Add(point);
-                return;
+                return true;
             }
         }
         
         Destroy(item);
+        return false;
     }
 
     public Vector3 RandomPoint(float radius, float altitude = 0)

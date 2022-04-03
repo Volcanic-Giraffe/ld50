@@ -10,6 +10,7 @@ public class LevelUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI hpText;
     [SerializeField] private TextMeshProUGUI ammoText;
 
+    [SerializeField] private TextMeshProUGUI enemiesText;
     private void Start()
     {
         var player = PanLevel.Instance.Player;
@@ -41,5 +42,10 @@ public class LevelUI : MonoBehaviour
         }
 
         ammoText.color = current == 0 ? Color.red : Color.white;
+    }
+
+    private void Update()
+    {
+        enemiesText.SetText($"Enemies: {PanLevel.Instance.Enemies.Count}");
     }
 }

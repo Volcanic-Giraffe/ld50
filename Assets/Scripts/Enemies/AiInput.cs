@@ -20,6 +20,8 @@ public class AiInput : MonoBehaviour
 
     private int _obstacleMask;
     private int _groundMask;
+
+    public Damageable Damageable => _character.Damageable;
     
     private void Awake()
     {

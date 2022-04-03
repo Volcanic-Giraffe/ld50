@@ -9,8 +9,8 @@ public class BpongRacket : MonoBehaviour
     
     private Rigidbody _rig;
 
-    private float rotY = 0.0f; // rotation around the up/y axis
-    private float rotX = 0.0f; // rotation around the right/x axis
+    // private float rotY = 0.0f; // rotation around the up/y axis
+    // private float rotX = 0.0f; // rotation around the right/x axis
     
     private void Awake()
     {
