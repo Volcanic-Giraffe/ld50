@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +13,7 @@ public class VegetableBody : MonoBehaviour
     [SerializeField] SpriteRenderer PupilLeft;
     [SerializeField] SpriteRenderer PupilRight;
     [SerializeField] SpriteRenderer Mouth;
+    [SerializeField] GameObject PiecePrefab;
     private Damageable _dmg;
     private Rigidbody _rb;
     private float bodySwitchTimer = 0;
@@ -43,6 +43,15 @@ public class VegetableBody : MonoBehaviour
 
     IEnumerator Flash()
     {
+        var amnt = Random.Range(1, 3);
+        for (int i = 0; i < amnt; i++)
+        {
+            var p = Instantiate(PiecePrefab);
+            p.transform.position = transform.position + new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.2f, 0.5f), Random.Range(-0.5f, 0.5f));
+            p.GetComponent<SpriteRenderer>().color = bodyData.PieceTint;
+            p.GetComponent<Rigidbody>().AddExplosionForce(10, transform.position, 1);
+        }
+        
         BodySprite.DOKill();
         yield return BodySprite.DOColor(Color.black, 0.05f).WaitForCompletion();
         yield return BodySprite.DOColor(Color.white, 0.1f).WaitForCompletion();
@@ -108,10 +117,9 @@ public class VegetableBody : MonoBehaviour
     {
         bodySwitchTimer = 0;
         lookFront = v;
-        Debug.Log($"{v}");
-        EyeLeft.gameObject.SetActive(v);
-        EyeRight.gameObject.SetActive(v);
-        Mouth.gameObject.SetActive(v);
+        EyeLeft.gameObject.SetActive(!IsRolling && v);
+        EyeRight.gameObject.SetActive(!IsRolling && v);
+        Mouth.gameObject.SetActive(!IsRolling && v);
     }
 
     private void UpdatePupils()

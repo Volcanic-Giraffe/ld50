@@ -16,4 +16,5 @@ public class BodyDataSO : ScriptableObject
     public Sprite Rot2;
     public Sprite Rot3;
     public Sprite Dead;
+    public Color PieceTint;
 }

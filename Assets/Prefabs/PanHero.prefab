@@ -192,6 +192,8 @@ MonoBehaviour:
   PupilLeft: {fileID: 5348101046902761296}
   PupilRight: {fileID: 5348101047550941798}
   Mouth: {fileID: 5348101048386767490}
+  PiecePrefab: {fileID: 88097856521709544, guid: 140b0fbf1eb489148aa5535de6516b57,
+    type: 3}
   IsRolling: 0
 --- !u!114 &1918040973419984829
 MonoBehaviour:
