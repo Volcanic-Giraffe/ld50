@@ -137,7 +137,7 @@ public class PanHero : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             _isGrounded = hit.distance <= GroundDistance;
-            transform.up = hit.normal;
+            // transform.up = hit.normal;
         }
 
     }
@@ -147,7 +147,7 @@ public class PanHero : MonoBehaviour
         // TODO does not work
         var r = _body.rotation;
         _body.MovePosition(_body.position + inputs * (Speed * Time.fixedDeltaTime));
-        _body.rotation = r;
+        // _body.rotation = r;
     }
     
     public void ChangeBody(BodyDataSO data)
