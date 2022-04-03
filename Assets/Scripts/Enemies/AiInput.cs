@@ -60,6 +60,11 @@ public class AiInput : MonoBehaviour
         {
             _state.GotHit();
         };
+        
+        _character.Damageable.OnDie += () =>
+        {
+            GameStats.Instance.KilledEnemies += 1;
+        };
     }
 
     private void OnLevelStarted()

@@ -15,6 +15,9 @@ public class LevelUI : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI enemiesText;
 
+    [SerializeField] private TextMeshProUGUI killedText;
+    [SerializeField] private TextMeshProUGUI waveText;
+    
     private void Awake()
     {
         Instance = FindObjectOfType<LevelUI>();
@@ -70,6 +73,9 @@ public class LevelUI : MonoBehaviour
     private void Update()
     {
         enemiesText.SetText($"Enemies: {PanLevel.Instance.Enemies.Count}");
+        
+        killedText.SetText($"Killed: {GameStats.Instance.KilledEnemies}");
+        waveText.SetText($"Wave: {GameStats.Instance.WavesDone + 1}");
     }
 
     public void ShowLevelUI()

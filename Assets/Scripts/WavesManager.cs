@@ -44,6 +44,8 @@ public class WavesManager : MonoBehaviour
         var pan = FindObjectOfType<Pan>();
 
         pan.IncreaseHeat();
+        
+        GameStats.Instance.WavesDone = _waveNumber - 1;
     }
 
 }
