@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 [RequireComponent(typeof(Damageable))]
 public class VegetableBody : MonoBehaviour
@@ -21,8 +22,28 @@ public class VegetableBody : MonoBehaviour
     void Start()
     {
         _dmg = GetComponent<Damageable>();
+        _dmg.OnHit += _dmg_OnHit;
+        _dmg.OnDie += _dmg_OnDie;
         _rb = GetComponent<Rigidbody>();
         UpdateBody();
+    }
+
+    private void _dmg_OnDie()
+    {
+        StopAllCoroutines();
+        BodySprite.DOKill();
+    }
+
+    private void _dmg_OnHit()
+    {
+        StartCoroutine(Flash());
+    }
+
+    IEnumerator Flash()
+    {
+        BodySprite.DOKill();
+        yield return BodySprite.DOColor(Color.black, 0.05f).WaitForCompletion();
+        yield return BodySprite.DOColor(Color.white, 0.1f).WaitForCompletion();
     }
 
     // Update is called once per frame

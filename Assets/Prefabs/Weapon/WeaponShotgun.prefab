@@ -105,8 +105,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dd024872668ba3e498c35590e22a5112, type: 3}
-  m_Color: {r: 1, g: 0.1618431, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: c0e4f2112734f624081027e5c034f6fb, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -207,7 +207,7 @@ MonoBehaviour:
   muzzleSR: {fileID: 0}
   muzzleFlashSide: {fileID: 21300000, guid: 3f283e66f17b3fb4da8b1c94b6bac716, type: 3}
   muzzleFlashForward: {fileID: 21300000, guid: fb4b2c52d97dd2e4d8c2d4493c7cbd5a, type: 3}
-  weaponLeft: {fileID: 21300000, guid: 2a6eb7aba8d86534a8bc94159657fefd, type: 3}
-  weaponRight: {fileID: 21300000, guid: 989b5e31558c09f4a843588117e019fd, type: 3}
-  weaponForward: {fileID: 21300000, guid: dd024872668ba3e498c35590e22a5112, type: 3}
-  weaponBackward: {fileID: 21300000, guid: 6b0e9aa3ff75b2a4481ee7afc0369521, type: 3}
+  weaponLeft: {fileID: 21300000, guid: 9a144ab74e450f14893fbe2cd75f59eb, type: 3}
+  weaponRight: {fileID: 21300000, guid: 99e7487a68f894f4a9e224fe2abfb2bb, type: 3}
+  weaponForward: {fileID: 21300000, guid: c0e4f2112734f624081027e5c034f6fb, type: 3}
+  weaponBackward: {fileID: 21300000, guid: 98a29bb36c880c24eaa28fe945b9fdc2, type: 3}
