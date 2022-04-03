@@ -8,9 +8,20 @@ using UnityEngine;
 public class Pan : MonoBehaviour
 {
     [SerializeField] private PanHeat heat;
+    private float _originY;
 
     public PanHeat PanHeat => heat;
     private float intensity = 0.5f;
+    
+    private Rigidbody _rig;
+
+
+    private void Awake()
+    {
+        _rig = GetComponent<Rigidbody>();
+        _originY = transform.position.y;
+    }
+    
     public void IncreaseHeat()
     {
         PanHeat.SetRadius(PanHeat.Radius + 2);
@@ -24,9 +35,17 @@ public class Pan : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
-            var rig = GetComponent<Rigidbody>();
-            
-            rig.AddForce(Vector3.up*1000f, ForceMode.Impulse);
+            PanFlip();
         }
+    }
+
+    public void PanFlip()
+    {
+            
+        _rig.DOMoveY(_originY+ 3f, 1.4f).SetEase(Ease.InBack).OnComplete(
+            () =>
+            {
+                _rig.DOMoveY(_originY, 0.7f).SetEase(Ease.OutBack);
+            });
     }
 }
