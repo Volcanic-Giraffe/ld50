@@ -9,19 +9,29 @@ public class HumanInput : MonoBehaviour
 
     private Vector3 _inputs = Vector3.zero;
     
+    public bool InputLocked = true;
+
     private void Awake()
     {
         _hero = GetComponent<PanHero>();
     }
 
-    // Start is called before the first frame update
     void Start()
     {
+        PanLevel.Instance.OnLevelStarted += Setup;
+    }
+
+    private void Setup()
+    {
+        PanLevel.Instance.OnLevelStarted -= Setup;
+        InputLocked = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (InputLocked) return;
+        
         if (_hero != null)
         {
             _inputs = Vector3.zero;
@@ -66,6 +76,8 @@ public class HumanInput : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (InputLocked) return;
+        
         _hero.FixedMove(_inputs);
     }
 }

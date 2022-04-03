@@ -39,9 +39,16 @@ public class AiInput : MonoBehaviour
 
     private void Start()
     {
+        PanLevel.Instance.OnLevelStarted += Setup;
+    }
+
+    private void Setup()
+    {
+        PanLevel.Instance.OnLevelStarted -= Setup;
+        
         // so all enemies does not shoot at the same time at level start
         _character.Weapon.RandomizeInitialDelay();
-        
+
         SetState(new AiStateIdle(this));
 
         _character.Damageable.OnHit += () =>
@@ -52,12 +59,12 @@ public class AiInput : MonoBehaviour
 
     void Update()
     {
-        _state.Update();
+        _state?.Update();
     }
     
     private void FixedUpdate()
     {
-        _state.FixedUpdate();
+        _state?.FixedUpdate();
     }
 
     public void UpdateAimAtTarget()

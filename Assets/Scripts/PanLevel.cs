@@ -7,6 +7,9 @@ using Random = UnityEngine.Random;
 
 public class PanLevel : MonoBehaviour
 {
+    [SerializeField] private bool quickStart;
+
+    [Header("Object containers:")]
     [SerializeField] private Transform charactersContainer;
     [SerializeField] private Transform bulletsContainer;
     [SerializeField] private Transform propsContainer;
@@ -48,6 +51,19 @@ public class PanLevel : MonoBehaviour
     }
     private void Start()
     {
+        if (quickStart)
+        {
+            FindObjectOfType<SelectorUI>().Hide(true);
+            BeginLevel("body_s", "pistol");
+        }
+
+    }
+
+    public void BeginLevel(string pickedHero, string pickedGun)
+    {
+        Debug.Log("BeginLevel: " + pickedHero + " " + pickedGun);
+        LevelUI.Instance.ShowLevelUI();
+        
         FindExistingEnemies();
         
         if (generateOnStart)
@@ -57,7 +73,7 @@ public class PanLevel : MonoBehaviour
         
         OnLevelStarted?.Invoke();
     }
-
+    
     private void FindExistingEnemies()
     {
         var foundEnemies = FindObjectsOfType<AiInput>();
