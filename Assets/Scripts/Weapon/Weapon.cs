@@ -110,6 +110,12 @@ public class Weapon : MonoBehaviour
     {
         muzzle.LookAt(target);
     }
+
+    public void RandomizeInitialDelay()
+    {
+        SetBulletsInClip(0);
+        _reloadTimer = Random.Range(0, config.ReloadTime);
+    }
 }
 
 [Serializable]

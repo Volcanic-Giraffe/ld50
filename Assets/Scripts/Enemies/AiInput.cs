@@ -23,6 +23,9 @@ public class AiInput : MonoBehaviour
     {
         _targetPos = transform.position;
         _character = GetComponent<PanHero>();
+        
+        // so all enemies does not shoot at the same time at level start
+        _character.Weapon.RandomizeInitialDelay();
     }
 
     void Update()
