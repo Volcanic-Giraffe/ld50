@@ -177,7 +177,7 @@ public class PanLevel : MonoBehaviour
     {
         for (int i = 0; i < PlaceAttempts; i++)
         {
-            var point = RandomPoint(radius, 0f);
+            var point = RandomPoint(radius, 3f);
 
             var canPlace = existing.All(other => !(Vector3.Distance(point, other) < spacing));
 

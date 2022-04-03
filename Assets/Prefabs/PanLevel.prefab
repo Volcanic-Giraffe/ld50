@@ -99,6 +99,8 @@ MonoBehaviour:
     - {fileID: 7703831379575843592, guid: 2356e0e4c5f310e4db7bb901bcefbc86, type: 3}
     - {fileID: 7703831379575843592, guid: 55048ec5142c20748a3423bf6b8f4da9, type: 3}
     - {fileID: 7703831379575843592, guid: cc415fca01dc5b34e99f9f5eeb966b44, type: 3}
+    - {fileID: 7703831379575843592, guid: 6761b228c76557340a0f4443f3c7b683, type: 3}
+    - {fileID: 7703831379575843592, guid: efc58808c3f65b1448722ab2f7ad1cc1, type: 3}
     PropsMin: 4
     PropsMax: 8
     PropsSpacing: 1
