@@ -1,9 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
-using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Pan : MonoBehaviour
 {
@@ -43,7 +40,27 @@ public class Pan : MonoBehaviour
         _rig.DOMoveY(_originY+ 3f, 1.4f).SetEase(Ease.InBack).OnComplete(
             () =>
             {
+                FlipProps();
+                
                 _rig.DOMoveY(_originY, 0.7f).SetEase(Ease.OutBack);
             });
+    }
+
+    private void FlipProps()
+    {
+        var props =  PanLevel.Instance.Props;
+
+        var force = 400f;
+
+        foreach (var prop in props)
+        {
+            if (prop == null) continue;
+            var rig = prop.GetComponent<Rigidbody>();
+
+            if (rig != null)
+            {
+                rig.AddTorque(new Vector3(Random.Range(-force, force), Random.Range(-force, force), Random.Range(-force, force)));
+            }
+        }
     }
 }
