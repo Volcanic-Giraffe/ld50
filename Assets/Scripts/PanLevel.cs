@@ -29,6 +29,9 @@ public class PanLevel : MonoBehaviour
     
     private const int PlaceAttempts = 100;
 
+    public event Action OnLevelStarted;
+    public event Action OnEnemiesKilled;
+    
     private void Awake()
     {
         Instance = FindObjectOfType<PanLevel>();
@@ -42,11 +45,6 @@ public class PanLevel : MonoBehaviour
         Enemies = new List<AiInput>();
 
         _occupied = new List<Vector3>();
-
-        if (Player != null)
-        {
-            _occupied.Add(Player.transform.position);
-        }
     }
     private void Start()
     {
@@ -54,8 +52,10 @@ public class PanLevel : MonoBehaviour
         
         if (generateOnStart)
         {
-            SpawnLevelWave();
+            SpawnLevelWave(levelGenConfig);
         }
+        
+        OnLevelStarted?.Invoke();
     }
 
     private void FindExistingEnemies()
@@ -77,9 +77,16 @@ public class PanLevel : MonoBehaviour
         enemy.Damageable.OnDie += () =>
         {
             Enemies.Remove(enemy);
+
+            CheckAllKilled();
         };
     }
-    
+
+    private void CheckAllKilled()
+    {
+        if (Enemies.Count == 0) OnEnemiesKilled?.Invoke();
+    }
+
     public void SpawnBullet(BulletConfig config, Vector3 position, Quaternion rotation, int team)
     {
         var bulletObj = Instantiate(config.Prefab, bulletsContainer);
@@ -95,15 +102,17 @@ public class PanLevel : MonoBehaviour
         }
     }
     
-    public void SpawnLevelWave()
+    public void SpawnLevelWave(LevelGenParams config)
     {
+        ResetOccupied();
+        
         // enemies
-        var enemiesCount = Random.Range(levelGenConfig.EnemiesMin, levelGenConfig.EnemiesMax);
+        var enemiesCount = Random.Range(config.EnemiesMin, config.EnemiesMax);
         for (int i = 0; i < enemiesCount; i++)
         {
-            var enemyGO =  levelGenConfig.EnemiesGO.PickRandom();
+            var enemyGO =  config.EnemiesGO.PickRandom();
             var enemyObj = Instantiate(enemyGO, charactersContainer, true);
-            if (PlaceWithAttempts(enemyObj, _occupied, levelGenConfig.SpawnRadius, levelGenConfig.EnemiesSpacing))
+            if (PlaceWithAttempts(enemyObj, _occupied, config.SpawnRadius, config.EnemiesSpacing))
             {
                 var enemyComp = enemyObj.GetComponent<AiInput>();
 
@@ -115,12 +124,24 @@ public class PanLevel : MonoBehaviour
         }
         
         // props
-        var propsCount = Random.Range(levelGenConfig.PropsMin, levelGenConfig.PropsMax);
+        var propsCount = Random.Range(config.PropsMin, config.PropsMax);
         for (int i = 0; i < propsCount; i++)
         {
-            var propGO =  levelGenConfig.PropsGO.PickRandom();
+            var propGO =  config.PropsGO.PickRandom();
             var propObj = Instantiate(propGO, propsContainer, true);
-            PlaceWithAttempts(propObj, _occupied, levelGenConfig.SpawnRadius, levelGenConfig.PropsSpacing);
+            PlaceWithAttempts(propObj, _occupied, config.SpawnRadius, config.PropsSpacing);
+        }
+    }
+
+    private void ResetOccupied()
+    {
+        _occupied.Clear();
+        
+        // tbd: add existing boxes
+        
+        if (Player != null)
+        {
+            _occupied.Add(Player.transform.position);
         }
     }
 
@@ -153,14 +174,6 @@ public class PanLevel : MonoBehaviour
         return new Vector3(x, altitude, z);
     }
     
-    void Update()
-    {
-        if (Input.GetKeyDown("k"))
-        {
-            _occupied.Clear();
-            SpawnLevelWave();
-        }
-    }
 }
 
 [Serializable]

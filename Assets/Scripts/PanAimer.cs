@@ -4,6 +4,7 @@ using UnityEngine;
 public class PanAimer : MonoBehaviour
 {
     public Camera Camera;
+    private int _groundMask;
 
     private void Awake()
     {
@@ -11,6 +12,7 @@ public class PanAimer : MonoBehaviour
         {
             Camera = Camera.main;
         }
+        _groundMask = LayerMask.GetMask("Ground");
     }
 
     public Vector3 AimPoint()
@@ -19,15 +21,9 @@ public class PanAimer : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        RaycastHit hit;
-        Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
+        var ray = Camera.ScreenPointToRay(Input.mousePosition);
 
-        var mask = new List<string>()
-        {
-            "Ground"
-        };
-
-        var raycast = Physics.Raycast(ray, out hit, 250, LayerMask.GetMask(mask.ToArray()));
+        var raycast = Physics.Raycast(ray, out var hit, 250, _groundMask);
 
         if (raycast)
         {

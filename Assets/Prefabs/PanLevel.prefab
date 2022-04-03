@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4886498428673836973}
   - component: {fileID: 4886498428673836970}
+  - component: {fileID: 5372605940596021309}
   m_Layer: 0
   m_Name: PanLevel
   m_TagString: Untagged
@@ -81,7 +82,7 @@ MonoBehaviour:
   charactersContainer: {fileID: 9076084104230438128}
   bulletsContainer: {fileID: 5048907540265679905}
   propsContainer: {fileID: 710916447833933577}
-  generateOnStart: 1
+  generateOnStart: 0
   levelGenConfig:
     SpawnRadius: 12
     EnemiesGO:
@@ -96,6 +97,32 @@ MonoBehaviour:
     PropsMin: 4
     PropsMax: 8
     PropsSpacing: 1
+--- !u!114 &5372605940596021309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4886498428673836971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b7bfde82fe923f4da220de12a8c3c6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _nextWave:
+    SpawnRadius: 14
+    EnemiesGO:
+    - {fileID: 3943801841136730571, guid: de779065e24704145bd3f368b7e055d6, type: 3}
+    - {fileID: 608384528343153724, guid: b921bea1b2a80d048bf748596cf187b3, type: 3}
+    - {fileID: 3743357199092098306, guid: 42506cdccc3490d438fb53bd66eaa89a, type: 3}
+    EnemiesMin: 1
+    EnemiesMax: 2
+    EnemiesSpacing: 2
+    PropsGO:
+    - {fileID: 7703831379575843592, guid: 2356e0e4c5f310e4db7bb901bcefbc86, type: 3}
+    PropsMin: 1
+    PropsMax: 2
+    PropsSpacing: 1.5
 --- !u!1 &5234373953643806320
 GameObject:
   m_ObjectHideFlags: 0
