@@ -59,21 +59,22 @@ public class AiInput : MonoBehaviour
         }
         else
         {
-            var source = _character.Weapon.Muzzle.position;
+            var sPos = _character.Weapon.Muzzle.position;
+            var tPos = _target.transform.position;
             
-            var hitObstacle = Physics.Raycast(source, _target.transform.position, out var hit, 50f, _obstacleMask);
+            var hitObstacle = Physics.Raycast(sPos, (tPos - sPos).normalized, out var hit, Vector3.Distance(sPos, tPos), _obstacleMask);
 
             if (hitObstacle)
             {
-                Debug.DrawLine (source, _target.transform.position, Color.red);
+                Debug.DrawLine (sPos, hit.point, Color.red);
                 _character.ReleaseTrigger();
             }
             else
             {
-                Debug.DrawLine (source, _target.transform.position, Color.green);
+                Debug.DrawLine (sPos, tPos, Color.green);
                 
-                _character.LookAt(_target.transform.position);
-                _character.AimAt(_target.transform.position);
+                _character.LookAt(tPos);
+                _character.AimAt(tPos);
 
                 _character.HoldTrigger();
             }
