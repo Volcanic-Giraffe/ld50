@@ -52,6 +52,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heat: {fileID: 6113542787177138411}
+  heatIncrementY: 1
+  heatMaxLocalY: -1
 --- !u!54 &2865968988974898660
 Rigidbody:
   m_ObjectHideFlags: 0
