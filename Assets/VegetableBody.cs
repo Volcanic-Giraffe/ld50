@@ -7,7 +7,7 @@ using DG.Tweening;
 [RequireComponent(typeof(Damageable))]
 public class VegetableBody : MonoBehaviour
 {
-    [SerializeField] BodyDataSO bodyData;
+    [SerializeField] public BodyDataSO bodyData;
     [SerializeField] SpriteRenderer BodySprite;
     [SerializeField] SpriteRenderer EyeLeft;
     [SerializeField] SpriteRenderer EyeRight;
@@ -18,6 +18,8 @@ public class VegetableBody : MonoBehaviour
     private Rigidbody _rb;
     private float bodySwitchTimer = 0;
     private bool lookFront;
+
+    public bool IsRolling;
 
     void Start()
     {
@@ -84,7 +86,11 @@ public class VegetableBody : MonoBehaviour
             }
         }
 
-        if (_dmg.Percent > 0.6)
+        if(IsRolling)
+        {
+            BodySprite.sprite = bodyData.Rot1;
+        }
+        else if (_dmg.Percent > 0.6)
         {
             BodySprite.sprite = lookFront ? bodyData.Front1 : bodyData.Back1;
         }
@@ -102,6 +108,7 @@ public class VegetableBody : MonoBehaviour
     {
         bodySwitchTimer = 0;
         lookFront = v;
+        Debug.Log($"{v}");
         EyeLeft.gameObject.SetActive(v);
         EyeRight.gameObject.SetActive(v);
         Mouth.gameObject.SetActive(v);

@@ -12,4 +12,8 @@ public class BodyDataSO : ScriptableObject
     public Sprite Back1;
     public Sprite Back2;
     public Sprite Back3;
+    public Sprite Rot1;
+    public Sprite Rot2;
+    public Sprite Rot3;
+    public Sprite Dead;
 }

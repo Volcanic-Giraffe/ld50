@@ -185,13 +185,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9200a2d51c44b444bc2168871ffc3b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bodyData: {fileID: 11400000, guid: 48ef20567a191074c8d84a6de013462f, type: 2}
+  bodyData: {fileID: 11400000, guid: 93feba551127fa24783d1b732e556e90, type: 2}
   BodySprite: {fileID: 5348101048143104136}
   EyeLeft: {fileID: 5348101047799977871}
   EyeRight: {fileID: 5348101047152127975}
   PupilLeft: {fileID: 5348101046902761296}
   PupilRight: {fileID: 5348101047550941798}
   Mouth: {fileID: 5348101048386767490}
+  IsRolling: 0
 --- !u!114 &1918040973419984829
 MonoBehaviour:
   m_ObjectHideFlags: 0

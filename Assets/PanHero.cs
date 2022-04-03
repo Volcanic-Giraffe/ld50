@@ -17,6 +17,7 @@ public class PanHero : MonoBehaviour
 
     private Rigidbody _body;
     private Animator _anim;
+    private VegetableBody _vgBody;
     private bool _isGrounded = true;
     private float _dashTimer;
     private float _invTimer;
@@ -47,6 +48,7 @@ public class PanHero : MonoBehaviour
     {
         _body = GetComponent<Rigidbody>();
         _anim = GetComponent<Animator>();
+        _vgBody = GetComponentInChildren<VegetableBody>();
     }
 
     public void LookAt(Vector3 target)
@@ -66,9 +68,17 @@ public class PanHero : MonoBehaviour
     public void Dash(Vector3 direction)
     {
         if (_dashTimer > 0) return;
-        if (direction.x < 0) _anim.Play("Roll"); else _anim.Play("RollLeft");
+        _vgBody.IsRolling = true;
+        if (direction.x < 0)
+        {
+            _anim.Play("Roll");
+        }
+        else
+        {
+            _anim.Play("RollLeft");
+        }
         _dashTimer = DashCD;
-        _invTimer = 1f;
+        _invTimer = 0.5f;
         Damageable.Invulnerable = true;
         //Vector3 dashVelocity = Vector3.Scale(direction, DashForce * new Vector3((Mathf.Log(1f / (Time.deltaTime * _body.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * _body.drag + 1)) / -Time.deltaTime)));
         _body.AddForce(direction.normalized * DashForce, ForceMode.VelocityChange);
@@ -107,7 +117,11 @@ public class PanHero : MonoBehaviour
         if (_invTimer > 0)
         {
             _invTimer -= Time.deltaTime;
-            if (_invTimer <= 0) Damageable.Invulnerable = false;
+            if (_invTimer <= 0)
+            {
+                Damageable.Invulnerable = false;
+                _vgBody.IsRolling = false;
+            }
         }
         
     }

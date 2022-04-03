@@ -19,3 +19,7 @@ MonoBehaviour:
   Back1: {fileID: 21300000, guid: 3933c071de28be14388be4a8121c250d, type: 3}
   Back2: {fileID: 21300000, guid: 01977d9e7fbed374598aeb6388c61f53, type: 3}
   Back3: {fileID: 21300000, guid: f82cfbe20bc37bd4a8132859981a8152, type: 3}
+  Rot1: {fileID: 21300000, guid: 5f37fe86463ea1e41a71493d8a883f93, type: 3}
+  Rot2: {fileID: 21300000, guid: 51382838954ea144fb97308c6447b991, type: 3}
+  Rot3: {fileID: 21300000, guid: 65df26c1ca6a29442b4063684f619c08, type: 3}
+  Dead: {fileID: 21300000, guid: a90eab70883746e489ff1042d9d3b67b, type: 3}

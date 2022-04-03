@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5418d2ca86dec3043be93b6cfa75a295, type: 3}
   m_Name: Sausage
   m_EditorClassIdentifier: 
-  Name: Carrot
+  Name: Sausage
   Front1: {fileID: 21300000, guid: e7d243e61f4f8ca4996b3713f42f8f64, type: 3}
   Front2: {fileID: 21300000, guid: c09d0ffe218e36645b3ddac8faeae20c, type: 3}
   Front3: {fileID: 21300000, guid: 9ceaba195ddc477498270abb2bde3b99, type: 3}
   Back1: {fileID: 21300000, guid: 5154731f14e3d3e48b53b2e6b80529eb, type: 3}
   Back2: {fileID: 21300000, guid: ffb51f755ca761448b1f52991ec71325, type: 3}
   Back3: {fileID: 21300000, guid: a37d84585b496ce478074da4031f5361, type: 3}
+  Rot1: {fileID: 21300000, guid: bed2791254da91545b8eb539b82cc22b, type: 3}
+  Rot2: {fileID: 21300000, guid: 1ca65b41260245e4da9bc99f23602564, type: 3}
+  Rot3: {fileID: 21300000, guid: 9442635ea2496bf409d18d61c0895dac, type: 3}
+  Dead: {fileID: 21300000, guid: e595efd918c86384b94a1bf937c88702, type: 3}
