@@ -14,12 +14,18 @@ public class VegetableBody : MonoBehaviour
     [SerializeField] SpriteRenderer PupilRight;
     [SerializeField] SpriteRenderer Mouth;
     [SerializeField] GameObject PiecePrefab;
+    [SerializeField] Animator mouthAnim;
     private Damageable _dmg;
     private Rigidbody _rb;
     private float bodySwitchTimer = 0;
     private bool lookFront;
+    private string[] RandomAnims = new string[] { "Scream1", "Scream2", "Scream3" };
 
     public bool IsRolling;
+    private PickRandomSprite _prs;
+    private float PupilLimit = 0.16f;
+    private float _mouthTimer;
+    private Coroutine _mouthCR;
 
     void Start()
     {
@@ -27,6 +33,8 @@ public class VegetableBody : MonoBehaviour
         _dmg.OnHit += _dmg_OnHit;
         _dmg.OnDie += _dmg_OnDie;
         _rb = GetComponent<Rigidbody>();
+        mouthAnim.enabled = false;
+        _prs = Mouth.gameObject.GetComponent<PickRandomSprite>();
         UpdateBody();
     }
 
@@ -34,11 +42,30 @@ public class VegetableBody : MonoBehaviour
     {
         StopAllCoroutines();
         BodySprite.DOKill();
+        PupilLeft.DOKill();
+        PupilRight.DOKill();
     }
 
     private void _dmg_OnHit()
     {
+        if (_mouthCR != null) StopCoroutine(_mouthCR);
+        _prs.Pick();
+        if (Random.value > 0.8) {
+            var rnd = Random.Range(0.5f, 3f);
+            PupilLeft.transform.localScale = new Vector3(rnd, rnd, rnd);
+            PupilRight.transform.localScale = new Vector3(rnd, rnd, rnd);
+        }
         StartCoroutine(Flash());
+    }
+
+    private void MovePupilsRandomly()
+    {
+        PupilLeft.DOKill();
+        PupilRight.DOKill();
+        var target = new Vector3(Random.Range(PupilLimit, -PupilLimit), Random.Range(PupilLimit, -PupilLimit),PupilLeft.transform.localPosition.z);
+        PupilLeft.transform.DOLocalMove(target, Random.Range(0.1f, 0.9f));
+        if(Random.value > 0.8f) {target = new Vector3(Random.Range(PupilLimit, -PupilLimit), Random.Range(PupilLimit, -PupilLimit), PupilLeft.transform.localPosition.z); }
+        PupilRight.transform.DOLocalMove(target, Random.Range(0.1f, 0.9f));
     }
 
     IEnumerator Flash()
@@ -67,6 +94,26 @@ public class VegetableBody : MonoBehaviour
 
     private void AnimateMouth()
     {
+        if (_mouthTimer > 0) _mouthTimer -= Time.deltaTime;
+        if (_mouthTimer <= 0)
+        {
+            if(_mouthCR != null) StopCoroutine(_mouthCR);
+            _mouthTimer = Random.Range(3f, 8f);
+            _mouthCR = StartCoroutine(AnimateMouthCR());
+        }
+    }
+
+    private IEnumerator AnimateMouthCR()
+    {
+        _prs.Pick();
+        yield return new WaitForSeconds(Random.Range(0.1f, 0.5f));
+        _prs.Pick();
+        yield return new WaitForSeconds(Random.Range(0.1f, 0.7f));
+        _prs.Pick();
+        if(Random.value > 0.5f) yield return new WaitForSeconds(Random.Range(0.1f, 2f));
+        _prs.Pick();
+        if (Random.value > 0.5f) yield return new WaitForSeconds(Random.Range(0.1f, 0.6f));
+        _prs.Pick();
     }
 
     private void UpdateBody()
@@ -124,5 +171,11 @@ public class VegetableBody : MonoBehaviour
 
     private void UpdatePupils()
     {
+        if (_mouthTimer > 0) _mouthTimer -= Time.deltaTime;
+        if(_mouthTimer <= 0)
+        {
+            _mouthTimer = Random.Range(1f, 5f);
+            MovePupilsRandomly();
+        }
     }
 }

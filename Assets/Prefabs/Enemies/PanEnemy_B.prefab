@@ -163,6 +163,7 @@ MonoBehaviour:
   Mouth: {fileID: 7733853501054929799}
   PiecePrefab: {fileID: 88097856521709544, guid: 140b0fbf1eb489148aa5535de6516b57,
     type: 3}
+  mouthAnim: {fileID: 5758182267382786580}
   IsRolling: 0
 --- !u!114 &2017157024872818341
 MonoBehaviour:
@@ -430,6 +431,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76cd5c109c845da49add0ed7ae7a3b69, type: 3}
+--- !u!95 &5758182267382786580 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8225553067246572314, guid: 76cd5c109c845da49add0ed7ae7a3b69,
+    type: 3}
+  m_PrefabInstance: {fileID: 4453537405237377294}
+  m_PrefabAsset: {fileID: 0}
 --- !u!212 &7733853501054929799 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 6240316056508625545, guid: 76cd5c109c845da49add0ed7ae7a3b69,

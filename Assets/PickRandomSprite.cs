@@ -8,6 +8,11 @@ public class PickRandomSprite : MonoBehaviour
     [SerializeField] Sprite[] sprites;
     void Start()
     {
-        if(sprites.Length > 0) GetComponent<SpriteRenderer>().sprite = sprites.PickRandom();    
+        Pick();
+    }
+
+    public void Pick()
+    {
+        if (sprites.Length > 0) GetComponent<SpriteRenderer>().sprite = sprites.PickRandom();
     }
 }
