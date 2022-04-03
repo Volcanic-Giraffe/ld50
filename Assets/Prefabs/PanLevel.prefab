@@ -94,6 +94,8 @@ MonoBehaviour:
     EnemiesSpacing: 2
     PropsGO:
     - {fileID: 7703831379575843592, guid: 2356e0e4c5f310e4db7bb901bcefbc86, type: 3}
+    - {fileID: 7703831379575843592, guid: 55048ec5142c20748a3423bf6b8f4da9, type: 3}
+    - {fileID: 7703831379575843592, guid: cc415fca01dc5b34e99f9f5eeb966b44, type: 3}
     PropsMin: 4
     PropsMax: 8
     PropsSpacing: 1
