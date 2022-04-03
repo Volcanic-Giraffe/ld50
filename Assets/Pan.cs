@@ -7,6 +7,16 @@ using UnityEngine;
 
 public class Pan : MonoBehaviour
 {
+    [SerializeField] private PanHeat heat;
+
+    public PanHeat PanHeat => heat;
+
+    public void IncreaseHeat()
+    {
+        PanHeat.SetRadius(PanHeat.Radius + 2);
+        PanHeat.transform.DOMoveY(PanHeat.transform.position.y + 1, 2f);
+    }
+    
     private void Update()
     {
 
