@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 557642188888159447}
   - component: {fileID: 1918040973419984829}
   - component: {fileID: 2940534307612996046}
+  - component: {fileID: 5428861187257450848}
   m_Layer: 10
   m_Name: PanHero
   m_TagString: Player
@@ -140,7 +141,8 @@ MonoBehaviour:
   Speed: 10
   JumpHeight: 20
   GroundDistance: 0.2
-  DashDistance: 5
+  DashForce: 20
+  DashCD: 2
 --- !u!54 &2962530558003526852
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -216,6 +218,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   health: 10
+--- !u!95 &5428861187257450848
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2962530558003526969}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bf4c195a341b1c64396a50532f32b51d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4802802884992147459
 GameObject:
   m_ObjectHideFlags: 0

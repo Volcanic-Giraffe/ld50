@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Animator))]
 public class PanHero : MonoBehaviour
 {
     [SerializeField] private Transform handAnchor;
@@ -10,10 +12,14 @@ public class PanHero : MonoBehaviour
     public float Speed = 5f;
     public float JumpHeight = 2f;
     public float GroundDistance = 0.2f;
-    public float DashDistance = 5f;
-    
+    public float DashForce = 5f;
+    public float DashCD = 2f;
+
     private Rigidbody _body;
+    private Animator _anim;
     private bool _isGrounded = true;
+    private float _dashTimer;
+    private float _invTimer;
 
     public Damageable Damageable { get; private set; }
     public Weapon Weapon { get; private set; }
@@ -40,11 +46,12 @@ public class PanHero : MonoBehaviour
     void Start()
     {
         _body = GetComponent<Rigidbody>();
+        _anim = GetComponent<Animator>();
     }
 
     public void LookAt(Vector3 target)
     {
-        //if (target != Vector3.zero) transform.forward = target;
+        
     }
 
     public void Jump()
@@ -56,13 +63,17 @@ public class PanHero : MonoBehaviour
         }
     }
     
-    public void Dash()
+    public void Dash(Vector3 direction)
     {
-        
-        // TODO move to fixedUpdate
-        Vector3 dashVelocity = Vector3.Scale(transform.forward, DashDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * _body.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * _body.drag + 1)) / -Time.deltaTime)));
-        _body.AddForce(dashVelocity, ForceMode.VelocityChange);
+        if (_dashTimer > 0) return;
+        if (direction.x < 0) _anim.Play("Roll"); else _anim.Play("RollLeft");
+        _dashTimer = DashCD;
+        _invTimer = 1f;
+        Damageable.Invulnerable = true;
+        //Vector3 dashVelocity = Vector3.Scale(direction, DashForce * new Vector3((Mathf.Log(1f / (Time.deltaTime * _body.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * _body.drag + 1)) / -Time.deltaTime)));
+        _body.AddForce(direction.normalized * DashForce, ForceMode.VelocityChange);
     }
+
 
     public void HoldTrigger()
     {
@@ -91,8 +102,14 @@ public class PanHero : MonoBehaviour
     
     void Update()
     {
-
-
+        //transform.forward = Vector3.zero;
+        if (_dashTimer > 0) _dashTimer -= Time.deltaTime;
+        if (_invTimer > 0)
+        {
+            _invTimer -= Time.deltaTime;
+            if (_invTimer <= 0) Damageable.Invulnerable = false;
+        }
+        
     }
 
 

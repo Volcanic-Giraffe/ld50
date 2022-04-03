@@ -32,7 +32,6 @@ public class HumanInput : MonoBehaviour
             _hero.LookAt(_inputs);
         }
         
-        
          
         if (Input.GetButtonDown("Jump"))
         {
@@ -40,7 +39,7 @@ public class HumanInput : MonoBehaviour
         }
         if (Input.GetButtonDown("Fire2"))
         {
-            _hero.Dash();
+            _hero.Dash(_inputs);
         }
         
         if (Input.GetButtonDown("Fire1"))

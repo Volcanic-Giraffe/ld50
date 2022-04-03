@@ -21,7 +21,7 @@ public class Damageable : MonoBehaviour
 
     public void Hit(GameObject source, float damage)
     {
-        if (_died) return;
+        if (_died || Invulnerable) return;
 
         health -= damage;
 
@@ -32,6 +32,8 @@ public class Damageable : MonoBehaviour
             Die();
         }
     }
+
+    public bool Invulnerable { get; internal set; }
 
     private void Die()
     {
