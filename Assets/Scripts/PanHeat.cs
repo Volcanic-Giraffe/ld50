@@ -11,6 +11,7 @@ public class PanHeat : MonoBehaviour
 
     [SerializeField] private Transform parentCylinder;
     [SerializeField] private ParticleSystem particles;
+    [SerializeField] private MeshRenderer pan;
     public float Radius => parentCylinder.transform.localScale.x / 2f;
 
     private void Start()
@@ -28,5 +29,12 @@ public class PanHeat : MonoBehaviour
         psShape.radius = radius * 0.6f;
 
         parentCylinder.transform.DOScale(new Vector3(radius * 2f, 0.1f, radius * 2f),3f);
+        
+    }
+
+    public void SetGlow(float intensity)
+    {
+        var color = pan.material.GetColor("_EmissionColor");
+        pan.material.SetColor("_EmissionColor", color * intensity);
     }
 }

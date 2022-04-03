@@ -384,40 +384,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4283608377526262560, guid: 964adfe612617c34092289d5ff1f25ec,
-        type: 3}
-      propertyPath: options.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4283608377526262560, guid: 964adfe612617c34092289d5ff1f25ec,
-        type: 3}
-      propertyPath: options.Array.data[2].Key
-      value: body_o
-      objectReference: {fileID: 0}
-    - target: {fileID: 4283608377526262560, guid: 964adfe612617c34092289d5ff1f25ec,
-        type: 3}
-      propertyPath: options.Array.data[2].Icon
-      value: 
-      objectReference: {fileID: 21300000, guid: fc72f08aa29f80f448f54ae78d4974ba,
-        type: 3}
-    - target: {fileID: 4283608377526262560, guid: 964adfe612617c34092289d5ff1f25ec,
-        type: 3}
-      propertyPath: options.Array.data[2].Name
-      value: Sosiska
-      objectReference: {fileID: 0}
-    - target: {fileID: 4283608377526262560, guid: 964adfe612617c34092289d5ff1f25ec,
-        type: 3}
-      propertyPath: options.Array.data[2].BodyData
-      value: 
-      objectReference: {fileID: 11400000, guid: cf4472a62fc859e42a070f9b4f205765,
-        type: 2}
-    - target: {fileID: 4283608377526262560, guid: 964adfe612617c34092289d5ff1f25ec,
-        type: 3}
-      propertyPath: options.Array.data[2].Description
-      value: Lorem ipsum
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 964adfe612617c34092289d5ff1f25ec, type: 3}
+--- !u!23 &226517718 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1651866878302513495, guid: 65ea02d1262dee84d93a860befa8ea86,
+    type: 3}
+  m_PrefabInstance: {fileID: 84734469537726571}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &231289390
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1273,6 +1247,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pan
       objectReference: {fileID: 0}
+    - target: {fileID: 6113542787177138411, guid: 65ea02d1262dee84d93a860befa8ea86,
+        type: 3}
+      propertyPath: pan
+      value: 
+      objectReference: {fileID: 226517718}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65ea02d1262dee84d93a860befa8ea86, type: 3}
 --- !u!1001 &2962530557851874247
