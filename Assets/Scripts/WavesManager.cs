@@ -40,6 +40,10 @@ public class WavesManager : MonoBehaviour
         
         _nextWave.EnemiesMax += 1;
         _nextWave.EnemiesMin += 1;
+
+        var pan = FindObjectOfType<Pan>();
+
+        pan.IncreaseHeat();
     }
 
 }
