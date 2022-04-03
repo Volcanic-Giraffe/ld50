@@ -384,6 +384,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4283608377526262560, guid: 964adfe612617c34092289d5ff1f25ec,
+        type: 3}
+      propertyPath: options.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4283608377526262560, guid: 964adfe612617c34092289d5ff1f25ec,
+        type: 3}
+      propertyPath: options.Array.data[2].Key
+      value: body_o
+      objectReference: {fileID: 0}
+    - target: {fileID: 4283608377526262560, guid: 964adfe612617c34092289d5ff1f25ec,
+        type: 3}
+      propertyPath: options.Array.data[2].Icon
+      value: 
+      objectReference: {fileID: 21300000, guid: fc72f08aa29f80f448f54ae78d4974ba,
+        type: 3}
+    - target: {fileID: 4283608377526262560, guid: 964adfe612617c34092289d5ff1f25ec,
+        type: 3}
+      propertyPath: options.Array.data[2].Name
+      value: Sosiska
+      objectReference: {fileID: 0}
+    - target: {fileID: 4283608377526262560, guid: 964adfe612617c34092289d5ff1f25ec,
+        type: 3}
+      propertyPath: options.Array.data[2].BodyData
+      value: 
+      objectReference: {fileID: 11400000, guid: cf4472a62fc859e42a070f9b4f205765,
+        type: 2}
+    - target: {fileID: 4283608377526262560, guid: 964adfe612617c34092289d5ff1f25ec,
+        type: 3}
+      propertyPath: options.Array.data[2].Description
+      value: Lorem ipsum
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 964adfe612617c34092289d5ff1f25ec, type: 3}
 --- !u!1001 &231289390
@@ -393,6 +425,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1745354205367768479, guid: 7cef3fd0d62ca92479e109f57dcac8e3,
+        type: 3}
+      propertyPath: sounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4752b156dad8a214faa942932651ecf3, type: 3}
     - target: {fileID: 6789890435953168366, guid: 7cef3fd0d62ca92479e109f57dcac8e3,
         type: 3}
       propertyPath: m_Name
@@ -1305,6 +1342,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: PanHero
       objectReference: {fileID: 0}
+    - target: {fileID: 5348101048143104136, guid: 433de2d128b5aa144b8e5cfc0cfed197,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a029cd8ba49c5fe4da967f76b0316a37,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 433de2d128b5aa144b8e5cfc0cfed197, type: 3}
 --- !u!1001 &4820169477202310670
