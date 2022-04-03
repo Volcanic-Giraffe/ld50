@@ -43,6 +43,11 @@ public class AiInput : MonoBehaviour
         _character.Weapon.RandomizeInitialDelay();
         
         SetState(new AiStateIdle(this));
+
+        _character.Damageable.OnHit += () =>
+        {
+            _state.GotHit();
+        };
     }
 
     void Update()
@@ -55,13 +60,19 @@ public class AiInput : MonoBehaviour
         _state.FixedUpdate();
     }
 
+    public void UpdateAimAtTarget()
+    {
+        if (_target != null)
+        {
+            _character.LookAt(_target.transform.position);
+            _character.AimAt(_target.transform.position);
+        }
+    }
+    
     public void UpdateShootTarget()
     {
         if (CanSeeTarget())
         {
-            _character.LookAt(_target.transform.position);
-            _character.AimAt(_target.transform.position);
-
             _character.HoldTrigger();
         }
         else
@@ -153,6 +164,10 @@ public class AiState
     {
         
     }
+
+    public virtual void GotHit()
+    {
+    }
 }
 
 public class AiStateIdle : AiState
@@ -179,6 +194,11 @@ public class AiStateIdle : AiState
     public override void FixedUpdate()
     {
         _owner.FixedMoveToTarget();
+    }
+    
+    public override void GotHit()
+    {
+        _owner.SetState(new AiStateAgro(_owner));
     }
 }
 
@@ -226,22 +246,43 @@ public class AiStateSeek : AiState
     {
         _owner.FixedMoveToTarget();
     }
+    
+    public override void GotHit()
+    {
+        _owner.SetState(new AiStateAgro(_owner));
+    }
 }
 
 public class AiStateAgro : AiState
 {
-
     private float _deagroTimer;
+
+    private float _warningTimer;
     
     public AiStateAgro(AiInput owner) : base(owner)
     {
         _deagroTimer = Random.Range(1f, 3f);
+        _warningTimer = 1.2f;
     }
 
     public override void Update()
     {
-        _owner.UpdateShootTarget();
+        _owner.UpdateAimAtTarget();
         _owner.UpdateMoveToTarget();
+        
+        _warningTimer -= Time.deltaTime;
+
+        if (_warningTimer <= 0)
+        {
+            _owner.UpdateShootTarget();
+            
+            _deagroTimer -= Time.deltaTime;
+
+            if (_deagroTimer <= 0)
+            {
+                _owner.SetState(new AiStateIdle(_owner));
+            }
+        }
         
         if (_owner.Damageable.Percent < 0.2f)
         {
@@ -249,12 +290,6 @@ public class AiStateAgro : AiState
             return;
         }
 
-        _deagroTimer -= Time.deltaTime;
-
-        if (_deagroTimer <=0)
-        {
-            _owner.SetState(new AiStateIdle(_owner));
-        }
     }
 
     public override void FixedUpdate()
