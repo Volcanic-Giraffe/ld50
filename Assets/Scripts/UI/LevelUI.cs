@@ -7,12 +7,23 @@ using UnityEngine;
 
 public class LevelUI : MonoBehaviour
 {
+    public static LevelUI Instance;
+    
+    [SerializeField] private CanvasGroup group;
     [SerializeField] private TextMeshProUGUI hpText;
     [SerializeField] private TextMeshProUGUI ammoText;
 
     [SerializeField] private TextMeshProUGUI enemiesText;
+
+    private void Awake()
+    {
+        Instance = FindObjectOfType<LevelUI>();
+    }
+
     private void Start()
     {
+        group.alpha = 0f;
+        
         var player = PanLevel.Instance.Player;
 
         player.Damageable.OnHit += () =>
@@ -27,6 +38,11 @@ public class LevelUI : MonoBehaviour
         player.Weapon.OnClipUpdated += UpdateAmmo;
     }
 
+    public void Show()
+    {
+        @group.alpha = 1f;
+    }
+    
     private void UpdateHp(float current, float max)
     {
         hpText.SetText($"hp: {current}/{max}");
@@ -47,5 +63,10 @@ public class LevelUI : MonoBehaviour
     private void Update()
     {
         enemiesText.SetText($"Enemies: {PanLevel.Instance.Enemies.Count}");
+    }
+
+    public void ShowLevelUI()
+    {
+        group.alpha = 1;
     }
 }
