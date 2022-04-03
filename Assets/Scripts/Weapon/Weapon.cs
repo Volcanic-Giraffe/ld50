@@ -45,6 +45,7 @@ public class Weapon : MonoBehaviour
             _reloadTimer -= Time.deltaTime;
             if (_reloadTimer <= 0)
             {
+                Sounds.Instance.PlayRandom(config.SoundReload);
                 SetBulletsInClip(config.ClipSize);
             }
         }
@@ -89,6 +90,8 @@ public class Weapon : MonoBehaviour
             PanLevel.Instance.SpawnBullet(config.BulletConfig, pos, rot, Team);
             if (!Config.Auto) ReleaseTrigger();
         }
+        
+        Sounds.Instance.PlayRandom(config.SoundShot);
         
         SetBulletsInClip(_bulletsInClip - 1);
     }
@@ -147,6 +150,9 @@ public class WeaponConfig
 
     public bool Auto;
 
+    public string SoundShot;
+    public string SoundReload;
+    
     public BulletConfig BulletConfig;
 }
 

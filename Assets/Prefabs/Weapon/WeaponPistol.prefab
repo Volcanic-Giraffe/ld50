@@ -187,6 +187,8 @@ MonoBehaviour:
     ReloadTime: 2
     ClipSize: 15
     Auto: 0
+    SoundShot: gun_05
+    SoundReload: gun_reload_05
     BulletConfig:
       Prefab: {fileID: 3048618270277323054, guid: 1d5b9abd8e056ea41ada3d1148974f84,
         type: 3}
