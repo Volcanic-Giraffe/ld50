@@ -12,24 +12,34 @@ public class PanHeat : MonoBehaviour
     [SerializeField] private Transform parentCylinder;
     [SerializeField] private ParticleSystem particles;
     [SerializeField] private MeshRenderer pan;
-    public float Radius => parentCylinder.transform.localScale.x / 2f;
+    public float Radius => _targetRadius;
 
+    public float RadiusMax => 29f / 2; // matches pan size
+
+    private float _targetRadius;
+    
     private void Start()
     {
         foreach (var wobble in wobbles)
         {
-            wobble.transform.rotation = Quaternion.Euler(-7,0,0);
-            wobble.transform.DORotate(new Vector3(7,0,0), Random.Range(5f, 7f)).SetLoops(-1, LoopType.Yoyo);
+            wobble.transform.rotation = Quaternion.Euler(-3,0,0);
+            wobble.transform.DORotate(new Vector3(3,0,0), Random.Range(5f, 7f)).SetLoops(-1, LoopType.Yoyo);
         }
+        
+        _targetRadius = parentCylinder.transform.localScale.x / 2f;
     }
 
     public void SetRadius(float radius)
     {
+        if (radius > RadiusMax) radius = RadiusMax;
+        
         var psShape = particles.shape;
         psShape.radius = radius * 0.6f;
 
+        parentCylinder.transform.DOKill();
         parentCylinder.transform.DOScale(new Vector3(radius * 2f, 0.1f, radius * 2f),3f);
-        
+
+        _targetRadius = radius;
     }
 
     public void SetGlow(float intensity)
