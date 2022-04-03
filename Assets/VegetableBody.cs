@@ -48,7 +48,7 @@ public class VegetableBody : MonoBehaviour
         {
             var p = Instantiate(PiecePrefab);
             p.transform.position = transform.position + new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.2f, 0.5f), Random.Range(-0.5f, 0.5f));
-            p.GetComponent<SpriteRenderer>().color = bodyData.PieceTint;
+            p.GetComponentInChildren<SpriteRenderer>().color = bodyData.PieceTint;
             p.GetComponent<Rigidbody>().AddExplosionForce(10, transform.position, 1);
         }
         

@@ -81,6 +81,7 @@ GameObject:
   - component: {fileID: 2113088516839714028}
   - component: {fileID: 2340773029955501979}
   - component: {fileID: 7045215512817135952}
+  - component: {fileID: 6911562869669397119}
   m_Layer: 10
   m_Name: PanEnemy_C
   m_TagString: Untagged
@@ -172,7 +173,8 @@ MonoBehaviour:
   Speed: 30
   JumpHeight: 20
   GroundDistance: 0.2
-  DashDistance: 5
+  DashForce: 5
+  DashCD: 2
 --- !u!54 &3743357199092098303
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -222,6 +224,9 @@ MonoBehaviour:
   PupilLeft: {fileID: 5824935267966631787}
   PupilRight: {fileID: 5824935267305783901}
   Mouth: {fileID: 5824935268636938937}
+  PiecePrefab: {fileID: 88097856521709544, guid: 140b0fbf1eb489148aa5535de6516b57,
+    type: 3}
+  IsRolling: 0
 --- !u!114 &2340773029955501979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,6 +257,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   health: 10
+--- !u!95 &6911562869669397119
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3743357199092098306}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5858485079720957796
 GameObject:
   m_ObjectHideFlags: 0
