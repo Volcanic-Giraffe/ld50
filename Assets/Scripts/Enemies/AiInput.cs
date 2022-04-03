@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class AiInput : MonoBehaviour
 {
@@ -18,31 +17,28 @@ public class AiInput : MonoBehaviour
     private float holdPositionTimer;
 
     private Vector3 _targetPos;
+
+    private int _obstacleMask;
+    private int _groundMask;
     
     private void Awake()
     {
         _targetPos = transform.position;
         _character = GetComponent<PanHero>();
         
+        _obstacleMask = LayerMask.GetMask(new [] {"Obstacles"});
+        _groundMask = LayerMask.GetMask("Ground");
+    }
+
+    private void Start()
+    {
         // so all enemies does not shoot at the same time at level start
         _character.Weapon.RandomizeInitialDelay();
     }
 
     void Update()
     {
-        if (_target == null)
-        {
-            _target = PanLevel.Instance.Player;
-            _character.ReleaseTrigger();
-        }
-        else
-        {
-            _character.LookAt(_target.transform.position);
-            _character.AimAt(_target.transform.position);
-
-            // TODO raycast visibility, bursts, etc
-            if(Random.value > 0.7f) _character.HoldTrigger();
-        }
+        UpdateShooting();
 
         holdPositionTimer -= Time.deltaTime;
 
@@ -51,6 +47,36 @@ public class AiInput : MonoBehaviour
             holdPositionTimer = holdPositionTime + Random.Range(-holdPositionTimeSpread, holdPositionTimeSpread);
 
             FindNewPosition();
+        }
+    }
+
+    private void UpdateShooting()
+    {
+        if (_target == null)
+        {
+            _target = PanLevel.Instance.Player;
+            _character.ReleaseTrigger();
+        }
+        else
+        {
+            var source = _character.Weapon.Muzzle.position;
+            
+            var hitObstacle = Physics.Raycast(source, _target.transform.position, out var hit, 50f, _obstacleMask);
+
+            if (hitObstacle)
+            {
+                Debug.DrawLine (source, _target.transform.position, Color.red);
+                _character.ReleaseTrigger();
+            }
+            else
+            {
+                Debug.DrawLine (source, _target.transform.position, Color.green);
+                
+                _character.LookAt(_target.transform.position);
+                _character.AimAt(_target.transform.position);
+
+                _character.HoldTrigger();
+            }
         }
     }
 
@@ -64,8 +90,6 @@ public class AiInput : MonoBehaviour
 
     private void FindNewPosition()
     {
-        var mask = LayerMask.GetMask("Ground");
-
         for (int i = 0; i < NewPositionAttempts; i++)
         {
             var angle = Random.value * Mathf.PI * 2f;
@@ -74,7 +98,7 @@ public class AiInput : MonoBehaviour
 
             var candidate = transform.position + new Vector3(x, 5f, z); // +5 so always above the pan
             
-            var raycast = Physics.Raycast(candidate, -Vector3.up, out var hit, 10f, mask);
+            var raycast = Physics.Raycast(candidate, -Vector3.up, out var hit, 10f, _groundMask);
 
             if (raycast)
             {

@@ -16,6 +16,7 @@ public class Weapon : MonoBehaviour
 
     public event Action<int, int> OnClipUpdated;
 
+    public Transform Muzzle => muzzle;
     public WeaponConfig Config => config;
     public bool IsFullClip => _bulletsInClip == config.ClipSize;
     public bool IsReloading => _reloadTimer > 0;
