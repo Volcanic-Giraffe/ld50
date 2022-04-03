@@ -173,6 +173,7 @@ MonoBehaviour:
   holdPositionTime: 4
   holdPositionTimeSpread: 1
   newPositionRadius: 7
+  gainAgroTime: 2
 --- !u!114 &6505409141983209582
 MonoBehaviour:
   m_ObjectHideFlags: 0
