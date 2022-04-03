@@ -68,7 +68,7 @@ public class Weapon : MonoBehaviour
         for (int i = 0; i < config.Pellets; i++)
         {
             var pos = muzzle.transform.position;
-            var rot = muzzle.transform.rotation * Quaternion.Euler(0, 0, Random.Range(-config.Spread, config.Spread));
+            var rot = muzzle.transform.rotation * Quaternion.Euler(0, Random.Range(-config.Spread, config.Spread), 0);
 
             PanLevel.Instance.SpawnBullet(config.BulletConfig, pos, rot);
             if (!Config.Auto) ReleaseTrigger();
