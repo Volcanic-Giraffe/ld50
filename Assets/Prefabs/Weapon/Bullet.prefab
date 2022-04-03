@@ -148,6 +148,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Altitude: 1.5
+  ImpactGO: {fileID: 5371529112201719852, guid: 1eed5b464bdb7a74a99c3fad463fad5c,
+    type: 3}
 --- !u!1 &3818697879500301859
 GameObject:
   m_ObjectHideFlags: 0

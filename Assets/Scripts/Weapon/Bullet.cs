@@ -4,6 +4,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float Altitude;
+    public GameObject ImpactGO;
     
     public BulletConfig Config { get; private set; }
     
@@ -61,6 +62,11 @@ public class Bullet : MonoBehaviour
         if (dmg != null && CanAttack(Team, dmg.Team))
         {
             dmg.Hit(gameObject, Config.Damage);
+
+            if (ImpactGO != null)
+            {
+                Instantiate(ImpactGO, transform.position, Quaternion.identity);
+            }
         }
         
         Destroy(gameObject);
