@@ -131,6 +131,10 @@ MonoBehaviour:
     PropsMin: 1
     PropsMax: 2
     PropsSpacing: 1.5
+  flipTimeMin: 10
+  flipTimeMax: 20
+  heatRiseMin: 15
+  heatRiseMax: 20
 --- !u!114 &5995144081978470544
 MonoBehaviour:
   m_ObjectHideFlags: 0

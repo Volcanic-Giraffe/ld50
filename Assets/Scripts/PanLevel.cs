@@ -23,8 +23,9 @@ public class PanLevel : MonoBehaviour
     public static PanLevel Instance;
 
     public PanHero Player { get; set; }
+    public Pan Pan { get; set; }
     
-    public List<Transform> Boxes { get; private set; }
+    public List<Transform> Props { get; private set; }
     public List<Bullet> Bullets { get; private set; }
     public List<AiInput> Enemies { get; private set; }
 
@@ -44,9 +45,10 @@ public class PanLevel : MonoBehaviour
         Aimer = FindObjectOfType<PanAimer>();
         
         Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PanHero>();
+        Pan = FindObjectOfType<Pan>();
         
         Bullets = new List<Bullet>();
-        Boxes = new List<Transform>();
+        Props = new List<Transform>();
         Enemies = new List<AiInput>();
 
         _occupied = new List<Vector3>();
@@ -75,6 +77,7 @@ public class PanLevel : MonoBehaviour
         LevelUI.Instance.ShowLevelUI();
         
         FindExistingEnemies();
+        FindExistingProps();
         
         if (generateOnStart)
         {
@@ -85,7 +88,20 @@ public class PanLevel : MonoBehaviour
 
         Started = true;
     }
-    
+
+    private void FindExistingProps()
+    {
+        var props = GameObject.FindGameObjectsWithTag("Obstacle");
+
+        foreach (var prop in props)
+        {
+            if (prop.GetComponent<Rigidbody>() != null)
+            {
+                Props.Add(prop.transform);
+            }
+        }
+    }
+
     private void FindExistingEnemies()
     {
         var foundEnemies = FindObjectsOfType<AiInput>();
@@ -158,6 +174,8 @@ public class PanLevel : MonoBehaviour
             var propGO =  config.PropsGO.PickRandom();
             var propObj = Instantiate(propGO, propsContainer, true);
             PlaceWithAttempts(propObj, _occupied, config.SpawnRadius, config.PropsSpacing);
+            
+            Props.Add(propObj.transform);
         }
     }
 
