@@ -26,6 +26,7 @@ public class WeaponPicker : MonoBehaviour
     
     public void OnLeftClicked()
     {
+        Sounds.Instance.PlayRandom("click_a");
         _selected -= 1;
         if (_selected < 0) _selected = options.Count - 1;
         
@@ -34,6 +35,7 @@ public class WeaponPicker : MonoBehaviour
 
     public void OnRightClicked()
     {
+        Sounds.Instance.PlayRandom("click_a");
         _selected += 1;
         if (_selected >= options.Count) _selected = 0;
 

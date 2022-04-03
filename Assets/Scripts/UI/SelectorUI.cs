@@ -14,6 +14,7 @@ public class SelectorUI : MonoBehaviour
     
     public void OnStartClicked()
     {
+        Sounds.Instance.PlayRandom("click_a");
         PanLevel.Instance.BeginLevel(heroPicker.GetSelection(), weaponPicker.GetSelection());
         Hide();
     }
