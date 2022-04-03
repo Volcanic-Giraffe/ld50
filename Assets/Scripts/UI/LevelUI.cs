@@ -35,7 +35,14 @@ public class LevelUI : MonoBehaviour
             UpdateHp(0, 0);
         };
 
-        player.Weapon.OnClipUpdated += UpdateAmmo;
+        player.OnWeaponSwitched += OnWeaponSwitched;
+
+        OnWeaponSwitched(player.Weapon);
+    }
+
+    private void OnWeaponSwitched(Weapon weapon)
+    {
+        weapon.OnClipUpdated += UpdateAmmo;
     }
 
     public void Show()

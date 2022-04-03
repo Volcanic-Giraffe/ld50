@@ -27,6 +27,8 @@ public class PanHero : MonoBehaviour
     public Weapon Weapon { get; private set; }
 
     public int Team => gameObject.GetInstanceID();
+
+    public event Action<Weapon> OnWeaponSwitched;
     
     private void Awake()
     {
@@ -166,5 +168,7 @@ public class PanHero : MonoBehaviour
         {
             Weapon.Team = Team;
         }
+        
+        OnWeaponSwitched?.Invoke(Weapon);
     }
 }
