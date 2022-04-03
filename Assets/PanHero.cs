@@ -152,7 +152,7 @@ public class PanHero : MonoBehaviour
     
     public void ChangeBody(BodyDataSO data)
     {
-        GetComponent<VegetableBody>().bodyData = data;
+        GetComponent<VegetableBody>().BodyData = data;
     }
 
     public void ChangeWeapon(GameObject weaponGO)

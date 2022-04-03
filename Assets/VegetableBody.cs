@@ -6,7 +6,7 @@ using DG.Tweening;
 [RequireComponent(typeof(Damageable))]
 public class VegetableBody : MonoBehaviour
 {
-    [SerializeField] public BodyDataSO bodyData;
+    [SerializeField] BodyDataSO bodyData;
     [SerializeField] SpriteRenderer BodySprite;
     [SerializeField] SpriteRenderer EyeLeft;
     [SerializeField] SpriteRenderer EyeRight;
@@ -27,6 +27,15 @@ public class VegetableBody : MonoBehaviour
     private float _mouthTimer;
     private Coroutine _mouthCR;
 
+    public BodyDataSO BodyData {
+        get => bodyData; 
+        set { 
+            bodyData = value;
+            EyeLeft.transform.localPosition += bodyData.EyeOffset;
+            EyeRight.transform.localPosition += new Vector3(-bodyData.EyeOffset.x, bodyData.EyeOffset.y, bodyData.EyeOffset.z);
+        } 
+    }
+
     void Start()
     {
         _dmg = GetComponent<Damageable>();
@@ -36,7 +45,10 @@ public class VegetableBody : MonoBehaviour
         mouthAnim.enabled = false;
         _prs = Mouth.gameObject.GetComponent<PickRandomSprite>();
         UpdateBody();
+        EyeLeft.transform.localPosition += bodyData.EyeOffset;
+        EyeRight.transform.localPosition += new Vector3(-bodyData.EyeOffset.x, bodyData.EyeOffset.y, bodyData.EyeOffset.z);
     }
+
 
     private void _dmg_OnDie()
     {

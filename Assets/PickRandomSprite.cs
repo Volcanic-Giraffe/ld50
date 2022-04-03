@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class PickRandomSprite : MonoBehaviour
 {
-    [SerializeField] Sprite[] sprites;
+    [SerializeField] public Sprite[] sprites;
     void Start()
     {
         Pick();
