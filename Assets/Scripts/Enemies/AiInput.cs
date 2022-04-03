@@ -10,7 +10,7 @@ public class AiInput : MonoBehaviour
     [SerializeField] private float gainAgroTime;
 
     private const int NewPositionAttempts = 5;
-    private const float PositionReachRadius = 1.5f;
+    private const float PositionReachRadius = 1.0f;
     
     private PanHero _character;
 
@@ -145,9 +145,17 @@ public class AiInput : MonoBehaviour
 
     public void FixedMoveToTarget()
     {
-        if (Vector3.Distance(transform.position, _targetPos) > PositionReachRadius)
+        var mPos = new Vector3(transform.position.x, 0, transform.position.y);
+        var tPos = new Vector3(_targetPos.x, 0, _targetPos.y);
+        
+        if (Vector3.Distance(mPos,tPos) > PositionReachRadius)
         {
-            _character.FixedMove((_targetPos - transform.position).normalized);
+            var movement = (_targetPos - transform.position).normalized;
+            movement = new Vector3(movement.x, Mathf.Max(movement.y, 0), movement.z); // prevent floor digging
+
+            _character.FixedMove(movement);
+            
+            Debug.DrawLine(transform.position, _targetPos);
         }
     }
     
