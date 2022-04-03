@@ -12,6 +12,7 @@ public class HeroProfile
     public Sprite Icon;
     public string Name;
     public string Description;
+    public BodyDataSO BodyData;
 }
 
 public class HeroPicker : MonoBehaviour
@@ -49,8 +50,8 @@ public class HeroPicker : MonoBehaviour
         descriptionText.SetText(option.Description);
     }
 
-    public string GetSelection()
+    public HeroProfile GetSelection()
     {
-        return options[_selected].Key;
+        return options[_selected];
     }
 }

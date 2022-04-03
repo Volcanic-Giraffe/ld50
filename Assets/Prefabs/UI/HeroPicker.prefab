@@ -715,10 +715,12 @@ MonoBehaviour:
     Icon: {fileID: 21300000, guid: 3933c071de28be14388be4a8121c250d, type: 3}
     Name: Mr. Carrot
     Description: He has a crack
+    BodyData: {fileID: 11400000, guid: 48ef20567a191074c8d84a6de013462f, type: 2}
   - Key: body_s
     Icon: {fileID: 21300000, guid: 5154731f14e3d3e48b53b2e6b80529eb, type: 3}
     Name: Sosiska
     Description: Lorem ipsum
+    BodyData: {fileID: 11400000, guid: 93feba551127fa24783d1b732e556e90, type: 2}
   icon: {fileID: 5837294405725445187}
   nameText: {fileID: 4848341059020541427}
   descriptionText: {fileID: 5995465052267380312}

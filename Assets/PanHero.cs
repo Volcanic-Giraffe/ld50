@@ -8,6 +8,7 @@ using UnityEngine;
 public class PanHero : MonoBehaviour
 {
     [SerializeField] private Transform handAnchor;
+    [SerializeField] private Transform weaponHand;
     
     public float Speed = 5f;
     public float JumpHeight = 2f;
@@ -145,5 +146,25 @@ public class PanHero : MonoBehaviour
         var r = _body.rotation;
         _body.MovePosition(_body.position + inputs * (Speed * Time.fixedDeltaTime));
         _body.rotation = r;
+    }
+    
+    public void ChangeBody(BodyDataSO data)
+    {
+        GetComponent<VegetableBody>().bodyData = data;
+    }
+
+    public void ChangeWeapon(GameObject weaponGO)
+    {
+        Destroy(Weapon);
+
+        var weaponObj = Instantiate(weaponGO, weaponHand);
+        weaponObj.transform.localPosition = Vector3.zero;
+        weaponObj.transform.localRotation = Quaternion.identity;
+
+        Weapon = weaponObj.GetComponent<Weapon>();
+        if (Weapon != null)
+        {
+            Weapon.Team = Team;
+        }
     }
 }

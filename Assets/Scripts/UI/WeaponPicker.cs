@@ -12,6 +12,7 @@ public class WeaponProfile
     public Sprite Icon;
     public string Name;
     public string Description;
+    public GameObject WeaponGO;
 }
 
 public class WeaponPicker : MonoBehaviour
@@ -50,8 +51,8 @@ public class WeaponPicker : MonoBehaviour
         descriptionText.SetText(option.Description);
     }
     
-    public string GetSelection()
+    public WeaponProfile GetSelection()
     {
-        return options[_selected].Key;
+        return options[_selected];
     }
 }

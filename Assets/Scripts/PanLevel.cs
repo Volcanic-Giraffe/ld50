@@ -56,14 +56,22 @@ public class PanLevel : MonoBehaviour
         if (quickStart)
         {
             FindObjectOfType<SelectorUI>().Hide(true);
-            BeginLevel("body_s", "pistol");
+            BeginLevel(null, null);
         }
 
     }
 
-    public void BeginLevel(string pickedHero, string pickedGun)
+    public void BeginLevel(HeroProfile pickedHero, WeaponProfile pickedGun)
     {
-        Debug.Log("BeginLevel: " + pickedHero + " " + pickedGun);
+        if (pickedHero != null)
+        {
+            Player.ChangeBody(pickedHero.BodyData);
+        }
+        if (pickedGun != null)
+        {
+            Player.ChangeWeapon(pickedGun.WeaponGO);
+        }
+        
         LevelUI.Instance.ShowLevelUI();
         
         FindExistingEnemies();
