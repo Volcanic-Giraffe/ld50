@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f5a2db56bbc7e34590c8bde8fc2a0ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quickStart: 1
+  quickStart: 0
   charactersContainer: {fileID: 9076084104230438128}
   bulletsContainer: {fileID: 5048907540265679905}
   propsContainer: {fileID: 710916447833933577}
@@ -100,6 +100,7 @@ MonoBehaviour:
     PropsMin: 4
     PropsMax: 8
     PropsSpacing: 1
+  Started: 0
 --- !u!114 &5372605940596021309
 MonoBehaviour:
   m_ObjectHideFlags: 0
