@@ -26,9 +26,28 @@ public class WeaponSpriteController : MonoBehaviour
         if (!rotateAnchor) return;
         var camVector = transform.position - Camera.main.transform.position;
         angle = Vector3.SignedAngle(camVector, transform.position - rotateAnchor.transform.position, Vector3.up);
-        if (angle < 45 && angle > -45) weaponSR.sprite = weaponBackward;
-        if (angle > 45 && angle < 135) weaponSR.sprite = weaponRight;
-        if (angle > 135 || angle < -135) weaponSR.sprite = weaponForward;
-        if (angle < -45  && angle > -135) weaponSR.sprite = weaponLeft;
+        if (angle < 45 && angle > -45)
+        {
+            weaponSR.sprite = weaponBackward;
+            muzzleSR.sprite = muzzleFlashForward;
+            muzzleSR.transform.localScale = new Vector3(1, 1, 1);
+        }
+        if (angle > 45 && angle < 135)
+        {
+            weaponSR.sprite = weaponRight;
+            muzzleSR.sprite = muzzleFlashSide;
+            muzzleSR.transform.localScale = new Vector3(1,1,1);
+        }
+        if (angle > 135 || angle < -135) {
+            weaponSR.sprite = weaponForward;
+            muzzleSR.sprite = muzzleFlashForward;
+            muzzleSR.transform.localScale = new Vector3(1, 1, 1);
+        }
+        if (angle < -45 && angle > -135)
+        {
+            weaponSR.sprite = weaponLeft;
+            muzzleSR.sprite = muzzleFlashSide;
+            muzzleSR.transform.localScale = new Vector3(-1, 1, 1);
+        }
     }
 }

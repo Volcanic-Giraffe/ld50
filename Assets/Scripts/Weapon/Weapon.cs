@@ -6,13 +6,15 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] private Transform muzzle;
     [SerializeField] private WeaponConfig config;
-    
+    public SpriteRenderer muzzleFlash;
+
     private bool _triggerPressed;
 
     private float _fireTimer;
     private float _reloadTimer;
 
     private int _bulletsInClip;
+    private float _muzzleFlashTimer;
 
     public event Action<int, int> OnClipUpdated;
 
@@ -33,6 +35,7 @@ public class Weapon : MonoBehaviour
         {
             sprc.SetParent(GetComponentInParent<PanHero>().gameObject);
         }
+        muzzleFlash.enabled = false;
     }
 
     private void Update()
@@ -47,6 +50,14 @@ public class Weapon : MonoBehaviour
         }
         
         UpdateFiring();
+        if(_muzzleFlashTimer>0)
+        {
+            _muzzleFlashTimer -= Time.deltaTime;
+            if(_muzzleFlashTimer<=0)
+            {
+                muzzleFlash.enabled = false;
+            }
+        }
     }
 
     private void UpdateFiring()
@@ -67,6 +78,8 @@ public class Weapon : MonoBehaviour
     private void FireOnce()
     {
         if (_bulletsInClip <= 0) return;
+        muzzleFlash.enabled = true;
+        _muzzleFlashTimer = 0.1f;
         
         for (int i = 0; i < config.Pellets; i++)
         {

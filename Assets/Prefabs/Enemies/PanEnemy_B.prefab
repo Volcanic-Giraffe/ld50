@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handAnchor: {fileID: 1293290714522509351}
+  weaponHand: {fileID: 0}
   Speed: 5
   JumpHeight: 20
   GroundDistance: 0.2
@@ -191,8 +192,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1651521c189d0274ba7b9996f3169a7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
-  health: 10
+  maxHealth: 100
+  health: 100
 --- !u!95 &5363149137438741102
 Animator:
   serializedVersion: 4
