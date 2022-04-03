@@ -6,6 +6,8 @@ public class Bullet : MonoBehaviour
     public float Altitude;
     
     public BulletConfig Config { get; private set; }
+    
+    public int Team { get; set; }
 
     private Rigidbody _rig;
 
@@ -20,8 +22,10 @@ public class Bullet : MonoBehaviour
         _rig = GetComponent<Rigidbody>();
     }
 
-    public void Setup(BulletConfig config)
+    public void Setup(BulletConfig config, int team)
     {
+        Team = team;
+
         Config = config;
 
         _speed = config.Speed;
@@ -54,11 +58,16 @@ public class Bullet : MonoBehaviour
             dmg = other.gameObject.GetComponentInParent<Damageable>();
         }
         
-        if (dmg != null)
+        if (dmg != null && CanAttack(Team, dmg.Team))
         {
             dmg.Hit(gameObject, Config.Damage);
         }
         
         Destroy(gameObject);
+    }
+
+    private bool CanAttack(int teamA, int teamB)
+    {
+        return teamB == 0 || teamA != teamB;
     }
 }

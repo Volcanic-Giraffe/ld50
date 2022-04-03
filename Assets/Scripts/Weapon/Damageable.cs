@@ -16,6 +16,8 @@ public class Damageable : MonoBehaviour
 
     public event Action OnHit;
     public event Action OnDie;
+    
+    public int Team { get; set; }
 
     public void Hit(GameObject source, float damage)
     {

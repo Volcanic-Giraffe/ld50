@@ -23,6 +23,8 @@ public class Weapon : MonoBehaviour
     
     public int BulletsInClip => _bulletsInClip;
 
+    public int Team { get; set; }
+    
     private void Start()
     {
         SetBulletsInClip(config.ClipSize);
@@ -71,7 +73,7 @@ public class Weapon : MonoBehaviour
             var pos = muzzle.transform.position;
             var rot = muzzle.transform.rotation * Quaternion.Euler(0, Random.Range(-config.Spread, config.Spread), 0);
 
-            PanLevel.Instance.SpawnBullet(config.BulletConfig, pos, rot);
+            PanLevel.Instance.SpawnBullet(config.BulletConfig, pos, rot, Team);
             if (!Config.Auto) ReleaseTrigger();
         }
         

@@ -57,7 +57,7 @@ public class PanLevel : MonoBehaviour
         }
     }
 
-    public void SpawnBullet(BulletConfig config, Vector3 position, Quaternion rotation)
+    public void SpawnBullet(BulletConfig config, Vector3 position, Quaternion rotation, int team)
     {
         var bulletObj = Instantiate(config.Prefab, bulletsContainer);
         bulletObj.transform.position = position;
@@ -68,7 +68,7 @@ public class PanLevel : MonoBehaviour
 
         if (bullet != null)
         {
-            bullet.Setup(config);
+            bullet.Setup(config, team);
         }
     }
     

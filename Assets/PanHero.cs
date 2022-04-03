@@ -15,15 +15,26 @@ public class PanHero : MonoBehaviour
     private Rigidbody _body;
     private bool _isGrounded = true;
 
-    private Weapon _weapon;
-
     public Damageable Damageable { get; private set; }
-    public Weapon Weapon => _weapon;
+    public Weapon Weapon { get; private set; }
+
+    public int Team => gameObject.GetInstanceID();
     
     private void Awake()
     {
-        _weapon = GetComponentInChildren<Weapon>();
+        Weapon = GetComponentInChildren<Weapon>();
+
+        if (Weapon != null)
+        {
+            Weapon.Team = Team;
+        }
+        
         Damageable = GetComponent<Damageable>();
+
+        if (Damageable != null)
+        {
+            Damageable.Team = Team;
+        }
     }
 
     void Start()
@@ -55,17 +66,17 @@ public class PanHero : MonoBehaviour
 
     public void HoldTrigger()
     {
-        if (_weapon != null)
+        if (Weapon != null)
         {
-            _weapon.HoldTrigger();
+            Weapon.HoldTrigger();
         }
     }
 
     public void ReleaseTrigger()
     {
-        if (_weapon != null)
+        if (Weapon != null)
         {
-            _weapon.ReleaseTrigger();
+            Weapon.ReleaseTrigger();
         }
     }
 
@@ -75,7 +86,7 @@ public class PanHero : MonoBehaviour
 
         handAnchor.transform.right = dir;
             
-        _weapon.AimAt(target);
+        Weapon.AimAt(target);
     }
     
     void Update()
