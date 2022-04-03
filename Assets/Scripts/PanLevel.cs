@@ -120,6 +120,15 @@ public class PanLevel : MonoBehaviour
 
         return new Vector3(x, altitude, z);
     }
+    
+    void Update()
+    {
+        if (Input.GetKeyDown("k"))
+        {
+            _occupied.Clear();
+            SpawnLevelWave();
+        }
+    }
 }
 
 [Serializable]
