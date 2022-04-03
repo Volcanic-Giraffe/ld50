@@ -12,7 +12,10 @@ public class OrbitCenter : MonoBehaviour
 
     void Update()
     {
-        var angle = Target.transform.position.AngleOffAroundAxis(transform.position, Vector3.up);
-        if(Mathf.Abs(angle) > 20f) transform.RotateAround(Vector3.zero, Vector3.up, Mathf.Lerp(0, angle,Time.deltaTime));
+        if (Target != null)
+        {
+            var angle = Target.transform.position.AngleOffAroundAxis(transform.position, Vector3.up);
+            if(Mathf.Abs(angle) > 20f) transform.RotateAround(Vector3.zero, Vector3.up, Mathf.Lerp(0, angle,Time.deltaTime));
+        }
     }
 }
