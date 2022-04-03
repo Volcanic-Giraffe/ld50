@@ -32,7 +32,6 @@ public class Pan : MonoBehaviour
     
     private void Update()
     {
-
         if (Input.GetButtonDown("Jump"))
         {
             PanFlip();
@@ -41,7 +40,6 @@ public class Pan : MonoBehaviour
 
     public void PanFlip()
     {
-            
         _rig.DOMoveY(_originY+ 3f, 1.4f).SetEase(Ease.InBack).OnComplete(
             () =>
             {

@@ -23,6 +23,7 @@ public class PanLevel : MonoBehaviour
     public static PanLevel Instance;
 
     public PanHero Player { get; set; }
+    public Pan Pan { get; set; }
     
     public List<Transform> Boxes { get; private set; }
     public List<Bullet> Bullets { get; private set; }
@@ -44,6 +45,7 @@ public class PanLevel : MonoBehaviour
         Aimer = FindObjectOfType<PanAimer>();
         
         Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PanHero>();
+        Pan = FindObjectOfType<Pan>();
         
         Bullets = new List<Bullet>();
         Boxes = new List<Transform>();
