@@ -718,9 +718,19 @@ MonoBehaviour:
     BodyData: {fileID: 11400000, guid: 48ef20567a191074c8d84a6de013462f, type: 2}
   - Key: body_s
     Icon: {fileID: 21300000, guid: 5154731f14e3d3e48b53b2e6b80529eb, type: 3}
-    Name: Sosiska
-    Description: Lorem ipsum
+    Name: Sausage
+    Description: It's kinda saus
     BodyData: {fileID: 11400000, guid: 93feba551127fa24783d1b732e556e90, type: 2}
+  - Key: body_o
+    Icon: {fileID: 21300000, guid: ddcaf141919a41647922dd26645801fb, type: 3}
+    Name: Leek
+    Description: Get 733kd
+    BodyData: {fileID: 11400000, guid: cf4472a62fc859e42a070f9b4f205765, type: 2}
+  - Key: body_m
+    Icon: {fileID: 21300000, guid: 7ab1f28cf5a57c041b0075c1ced3a03f, type: 3}
+    Name: Mushroom
+    Description: Not mush room on this pan for us both
+    BodyData: {fileID: 11400000, guid: 113cb363c44dd454eb91512710c222cb, type: 2}
   icon: {fileID: 5837294405725445187}
   nameText: {fileID: 4848341059020541427}
   descriptionText: {fileID: 5995465052267380312}

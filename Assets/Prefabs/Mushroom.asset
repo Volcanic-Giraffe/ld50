@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5418d2ca86dec3043be93b6cfa75a295, type: 3}
+  m_Name: Mushroom
+  m_EditorClassIdentifier: 
+  Name: Mushroom
+  Front1: {fileID: 21300000, guid: 37be272eec20d9d499b5f422cd267296, type: 3}
+  Front2: {fileID: 21300000, guid: b381e9be6179fbc419ba8d0fb7698512, type: 3}
+  Front3: {fileID: 21300000, guid: 9c596c484df91994d8b8607eea16420d, type: 3}
+  Back1: {fileID: 21300000, guid: 959b78abf1181ea42ba48940548a1006, type: 3}
+  Back2: {fileID: 21300000, guid: 7ab1f28cf5a57c041b0075c1ced3a03f, type: 3}
+  Back3: {fileID: 21300000, guid: 9a48775129f11fc4c8ebc80daef887c8, type: 3}
+  Rot1: {fileID: 21300000, guid: 4f2aab9dc547bc04a8fea9f3cb86e379, type: 3}
+  Rot2: {fileID: 21300000, guid: 4f2aab9dc547bc04a8fea9f3cb86e379, type: 3}
+  Rot3: {fileID: 21300000, guid: 4f2aab9dc547bc04a8fea9f3cb86e379, type: 3}
+  Dead: {fileID: 21300000, guid: 7b6bb3fd7f349784f99006872c42d913, type: 3}
+  PieceTint: {r: 0.6, g: 0.5568628, b: 0.47450984, a: 1}
