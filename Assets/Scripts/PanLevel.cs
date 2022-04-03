@@ -34,6 +34,8 @@ public class PanLevel : MonoBehaviour
 
     public event Action OnLevelStarted;
     public event Action OnEnemiesKilled;
+
+    public bool Started;
     
     private void Awake()
     {
@@ -72,6 +74,8 @@ public class PanLevel : MonoBehaviour
         }
         
         OnLevelStarted?.Invoke();
+
+        Started = true;
     }
     
     private void FindExistingEnemies()

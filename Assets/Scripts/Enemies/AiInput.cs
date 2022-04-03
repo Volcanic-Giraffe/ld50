@@ -28,8 +28,11 @@ public class AiInput : MonoBehaviour
 
     public float GainAgroTime => gainAgroTime;
     
+    public bool Deactivated { get; set; }
+    
     private void Awake()
     {
+        Deactivated = true;
         _targetPos = transform.position;
         _character = GetComponent<PanHero>();
         
@@ -39,12 +42,14 @@ public class AiInput : MonoBehaviour
 
     private void Start()
     {
-        PanLevel.Instance.OnLevelStarted += Setup;
-    }
-
-    private void Setup()
-    {
-        PanLevel.Instance.OnLevelStarted -= Setup;
+        if (PanLevel.Instance.Started)
+        {
+            Setup();
+        }
+        else
+        {
+            PanLevel.Instance.OnLevelStarted += OnLevelStarted;
+        }
         
         // so all enemies does not shoot at the same time at level start
         _character.Weapon.RandomizeInitialDelay();
@@ -57,13 +62,28 @@ public class AiInput : MonoBehaviour
         };
     }
 
+    private void OnLevelStarted()
+    {
+        PanLevel.Instance.OnLevelStarted -= OnLevelStarted;
+        Setup();
+    }
+    
+    private void Setup()
+    {
+        Deactivated = false;
+    }
+
     void Update()
     {
+        if (Deactivated) return;
+        
         _state?.Update();
     }
     
     private void FixedUpdate()
     {
+        if (Deactivated) return;
+        
         _state?.FixedUpdate();
     }
 

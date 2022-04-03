@@ -9,28 +9,42 @@ public class HumanInput : MonoBehaviour
 
     private Vector3 _inputs = Vector3.zero;
     
-    public bool InputLocked = true;
+    public bool Deactivated { get; set; }
 
     private void Awake()
     {
+        Deactivated = true;
         _hero = GetComponent<PanHero>();
     }
 
     void Start()
     {
-        PanLevel.Instance.OnLevelStarted += Setup;
+        if (PanLevel.Instance.Started)
+        {
+            Setup();
+        }
+        else
+        {
+            PanLevel.Instance.OnLevelStarted += OnLevelStarted;
+        }
+        
     }
 
-    private void Setup()
+    private void OnLevelStarted()
     {
-        PanLevel.Instance.OnLevelStarted -= Setup;
-        InputLocked = false;
+        PanLevel.Instance.OnLevelStarted -= OnLevelStarted;
+        Setup();
+    }
+
+    public void Setup()
+    {
+        Deactivated = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (InputLocked) return;
+        if (Deactivated) return;
         
         if (_hero != null)
         {
@@ -76,7 +90,7 @@ public class HumanInput : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (InputLocked) return;
+        if (Deactivated) return;
         
         _hero.FixedMove(_inputs);
     }
