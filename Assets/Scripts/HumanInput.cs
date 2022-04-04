@@ -57,11 +57,11 @@ public class HumanInput : MonoBehaviour
         }
         
          
-        if (Input.GetButtonDown("Jump"))
-        {
-            _hero.Jump();
-        }
-        if (Input.GetButtonDown("Fire2"))
+        // if (Input.GetButtonDown("Jump"))
+        // {
+        //     _hero.Jump();
+        // }
+        if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Fire2"))
         {
             _hero.Dash(_inputs);
         }
