@@ -12,7 +12,7 @@ public class PanAimer : MonoBehaviour
         {
             Camera = Camera.main;
         }
-        _groundMask = LayerMask.GetMask("Ground");
+        _groundMask = LayerMask.GetMask(new [ ] {"Ground", "Characters"});
     }
 
     public Vector3 AimPoint()
