@@ -26,7 +26,7 @@ public class Sounds : MonoBehaviour
     private void Awake()
     {
         // Use global for centered sounds, use local instance for 3D sounds 
-        if (!isGlobal) Instance = FindObjectOfType<Sounds>();
+        if (isGlobal) Instance = this;
         
         _soundsByPrefix = new Dictionary<string, List<AudioClip>>();
         _soundsByName = new Dictionary<string, AudioClip>();
