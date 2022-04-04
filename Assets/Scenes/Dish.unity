@@ -203,17 +203,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5372605940596021309, guid: cf5b915d33ea0264a9fc093578d91906,
-        type: 3}
-      propertyPath: _nextWave.EnemiesGO.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5372605940596021309, guid: cf5b915d33ea0264a9fc093578d91906,
-        type: 3}
-      propertyPath: _nextWave.EnemiesGO.Array.data[3]
-      value: 
-      objectReference: {fileID: 3743357199092098306, guid: e988940eb9bcecd43b8cfd0fff3c53fe,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf5b915d33ea0264a9fc093578d91906, type: 3}
 --- !u!1001 &89640418
@@ -1393,6 +1382,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 802243991460332963, guid: dd6fa272357ad694294bf45a2ec52724,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 802243991460332963, guid: dd6fa272357ad694294bf45a2ec52724,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 802243991460332963, guid: dd6fa272357ad694294bf45a2ec52724,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290028648365237051, guid: dd6fa272357ad694294bf45a2ec52724,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 33.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290028648365237051, guid: dd6fa272357ad694294bf45a2ec52724,
+        type: 3}
+      propertyPath: MinDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290028648365237051, guid: dd6fa272357ad694294bf45a2ec52724,
+        type: 3}
+      propertyPath: rolloffMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8915676021056149250, guid: dd6fa272357ad694294bf45a2ec52724,
         type: 3}
       propertyPath: m_RootOrder
