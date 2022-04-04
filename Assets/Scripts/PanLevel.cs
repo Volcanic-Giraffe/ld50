@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class PanLevel : MonoBehaviour
@@ -91,10 +92,18 @@ public class PanLevel : MonoBehaviour
         {
             SpawnLevelWave(levelGenConfig);
         }
+
+        Player.Damageable.OnDie += LevelFailed;
         
         OnLevelStarted?.Invoke();
 
         Started = true;
+    }
+
+    private void LevelFailed()
+    {
+        Started = false;
+        FindObjectOfType<FailUI>().ShowAnimated();
     }
 
     private void FindExistingProps()
@@ -227,7 +236,11 @@ public class PanLevel : MonoBehaviour
 
         return new Vector3(x, altitude, z);
     }
-    
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }
 
 [Serializable]

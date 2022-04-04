@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class Game : MonoBehaviour
 {
+    public Game Instance;
+    
     [SerializeField] private AudioSource music;
 
     private bool _muted;
@@ -14,6 +16,8 @@ public class Game : MonoBehaviour
 
     private void Awake()
     {
+        Instance = FindObjectOfType<Game>();
+        
         _initialVolume = music.volume;
     }
 
