@@ -77,6 +77,14 @@ public class Bullet : MonoBehaviour
                 Instantiate(ImpactGO, transform.position, Quaternion.identity);
             }
         }
+
+        if (other.CompareTag("Obstacle"))
+        {
+            if (ImpactGO != null)
+            {
+                Instantiate(ImpactGO, transform.position, Quaternion.identity);
+            }
+        }
         
         Destroy(gameObject);
     }

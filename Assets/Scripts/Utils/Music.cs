@@ -1,13 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-public class Game : MonoBehaviour
+public class Music : MonoBehaviour
 {
-    public Game Instance;
-    
+    public static Music Instance;
+
     [SerializeField] private AudioSource music;
 
     private bool _muted;
@@ -16,7 +13,7 @@ public class Game : MonoBehaviour
 
     private void Awake()
     {
-        Instance = FindObjectOfType<Game>();
+        Instance = FindObjectOfType<Music>();
         
         _initialVolume = music.volume;
     }
