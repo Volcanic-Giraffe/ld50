@@ -40,10 +40,10 @@ public class WavesManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown("k"))
-        {
-            SpawnNextWave();
-        }
+        // if (Input.GetKeyDown("k"))
+        // {
+        //     SpawnNextWave();
+        // }
 
         UpdatePanHeat();
         UpdatePanFlip();

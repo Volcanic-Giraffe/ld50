@@ -168,7 +168,7 @@ MonoBehaviour:
   heroPicker: {fileID: 1970035871831728357}
   weaponPicker: {fileID: 4484025528586047875}
   startButtonHolder: {fileID: 9174104739861624985}
-  startButton: {fileID: 7254645199891985811}
+  startButton: {fileID: 3906998132954321310}
 --- !u!1 &4424101572773197259
 GameObject:
   m_ObjectHideFlags: 0

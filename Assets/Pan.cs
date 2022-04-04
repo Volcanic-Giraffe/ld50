@@ -31,14 +31,14 @@ public class Pan : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            PanFlip();
-        }
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            IncreaseHeat();
-        }
+        // if (Input.GetKeyDown(KeyCode.U))
+        // {
+        //     PanFlip();
+        // }
+        // if (Input.GetKeyDown(KeyCode.T))
+        // {
+        //     IncreaseHeat();
+        // }
 
     }
     
