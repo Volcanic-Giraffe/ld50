@@ -10,6 +10,7 @@ public class PanHero : MonoBehaviour
 {
     [SerializeField] private Transform handAnchor;
     [SerializeField] private Transform weaponHand;
+    [SerializeField] private float downceleration;
     
     public float Speed = 5f;
     public float JumpHeight = 2f;
@@ -23,6 +24,7 @@ public class PanHero : MonoBehaviour
     private bool _isGrounded = true;
     private float _dashTimer;
     private float _invTimer;
+    private int _floorMask;
 
     public bool IntroDone { get; set; }
     
@@ -36,6 +38,8 @@ public class PanHero : MonoBehaviour
     
     private void Awake()
     {
+        _floorMask = LayerMask.GetMask("Ground");
+        
         Weapon = GetComponentInChildren<Weapon>();
 
         if (Weapon != null)
@@ -149,7 +153,14 @@ public class PanHero : MonoBehaviour
             _isGrounded = hit.distance <= GroundDistance;
             // transform.up = hit.normal;
         }
+        
+        var floating = !Physics.Raycast(transform.position, -Vector3.up, out hit, 0.55f,_floorMask);
 
+        if (floating)
+        {
+            _body.AddForce(-transform.up * downceleration * (_body.velocity.y > 0 ? 0.5f : 1f), ForceMode.Acceleration);
+        }
+        
         FixedTeleportToZero();
     }
 

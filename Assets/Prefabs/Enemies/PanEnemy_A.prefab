@@ -140,6 +140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handAnchor: {fileID: 3402726173672529360}
   weaponHand: {fileID: 0}
+  downceleration: 30
   Speed: 10
   JumpHeight: 20
   GroundDistance: 0.2
