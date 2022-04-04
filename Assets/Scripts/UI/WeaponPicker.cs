@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,8 +23,16 @@ public class WeaponPicker : MonoBehaviour
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI descriptionText;
 
+    [SerializeField] private RectTransform buttonLeftHolder;
+    [SerializeField] private RectTransform buttonRightHolder;
+
     private int _selected;
-    
+
+    private void Start()
+    {
+        UpdatePreview(false);
+    }
+
     public void OnLeftClicked()
     {
         Sounds.Instance.PlayRandom("click_a");
@@ -42,7 +51,7 @@ public class WeaponPicker : MonoBehaviour
         UpdatePreview();
     }
     
-    private void UpdatePreview()
+    private void UpdatePreview(bool animate = true)
     {
         var option = options[_selected];
 
@@ -51,6 +60,13 @@ public class WeaponPicker : MonoBehaviour
         
         nameText.SetText(option.Name);
         descriptionText.SetText(option.Description);
+
+        if (animate)
+        {
+            icon.transform.DOKill();
+            icon.transform.localScale = Vector3.one * 0.9f;
+            icon.transform.DOScale(Vector3.one, 0.2f).SetEase(Ease.OutBack);
+        }
     }
     
     public WeaponProfile GetSelection()

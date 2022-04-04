@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -10,8 +11,13 @@ public class SelectorUI : MonoBehaviour
     [SerializeField] private HeroPicker heroPicker;
     [SerializeField] private WeaponPicker weaponPicker;
 
+    [SerializeField] private RectTransform startButtonHolder;
     [SerializeField] private Button startButton;
-    
+    private void Start()
+    {
+        
+    }
+
     public void OnStartClicked()
     {
         Sounds.Instance.PlayRandom("click_a");
@@ -27,7 +33,7 @@ public class SelectorUI : MonoBehaviour
         }
         else
         {
-            container.transform.DOMoveY(1080f, 0.7f).SetEase(Ease.InBack);
+            container.transform.DOMoveY(-1080f, 0.7f).SetEase(Ease.InOutBack);
         }
         
         startButton.interactable = false;
