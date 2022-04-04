@@ -23,10 +23,12 @@ public class PanHeat : MonoBehaviour
     private float _targetRadius;
 
     private Dictionary<int, HeatEffect> _effects; // effect by target object ID
+    private AudioSource _aud;
 
     private void Awake()
     {
         _effects = new Dictionary<int, HeatEffect>();
+        _aud = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -43,7 +45,9 @@ public class PanHeat : MonoBehaviour
     public void SetRadius(float radius)
     {
         if (radius > RadiusMax) radius = RadiusMax;
-        
+        _aud.DOKill();
+        _aud.DOFade((radius / RadiusMax) * 0.65f, 3);
+
         var psShape = particles.shape;
         psShape.radius = radius * 0.6f;
 

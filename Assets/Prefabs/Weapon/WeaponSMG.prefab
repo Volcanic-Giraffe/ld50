@@ -90,6 +90,7 @@ MonoBehaviour:
     Auto: 1
     SoundShot: gun_11
     SoundReload: gun_reload_11
+    SoundReloadEnd: gun_reload_01
     BulletConfig:
       Prefab: {fileID: 3048618270277323054, guid: 1d5b9abd8e056ea41ada3d1148974f84,
         type: 3}

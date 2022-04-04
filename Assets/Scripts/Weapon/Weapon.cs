@@ -28,7 +28,7 @@ public class Weapon : MonoBehaviour
     public int BulletsInClip => _bulletsInClip;
 
     public int Team { get; set; }
-    
+    public bool isAIControlled { get; set; }
     private void Start()
     {
         SetBulletsInClip(config.ClipSize);
@@ -50,7 +50,9 @@ public class Weapon : MonoBehaviour
             if (_reloadTimer <= 0)
             {
                 OnReloadEnd?.Invoke();
-                Sounds.Instance.PlayRandom(config.SoundReload);
+                // Нужен определенный нерандомный звук, чтобы понимать, что перезарядка началась 
+                // и другой, что кончилась. Сейчас у всех пушек в конце gun_reload_01, потому что передергивание затвора
+                if (!isAIControlled) Sounds.Instance.PlayRandom(config.SoundReloadEnd);
                 SetBulletsInClip(config.ClipSize);
             }
         }
@@ -115,6 +117,7 @@ public class Weapon : MonoBehaviour
     {
         if (IsFullClip) return;
         if (IsReloading) return;
+        if(!isAIControlled) Sounds.Instance.PlayRandom(config.SoundReload);
 
         OnReloadStart?.Invoke();
         _reloadTimer = config.ReloadTime;
@@ -158,7 +161,8 @@ public class WeaponConfig
 
     public string SoundShot;
     public string SoundReload;
-    
+    public string SoundReloadEnd;
+
     public BulletConfig BulletConfig;
 }
 

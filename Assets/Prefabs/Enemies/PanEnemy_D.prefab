@@ -245,6 +245,7 @@ MonoBehaviour:
   holdPositionTime: 4
   holdPositionTimeSpread: 2
   newPositionRadius: 5
+  holdTriggerTimer: 0.8
   gainAgroTime: 2.4
 --- !u!114 &7045215512817135952
 MonoBehaviour:

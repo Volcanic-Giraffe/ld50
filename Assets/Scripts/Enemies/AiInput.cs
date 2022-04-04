@@ -6,6 +6,7 @@ public class AiInput : MonoBehaviour
     [SerializeField] private float holdPositionTime;
     [SerializeField] private float holdPositionTimeSpread;
     [SerializeField] private float newPositionRadius;
+    [SerializeField] private float holdTriggerTimer = 3;
 
     [SerializeField] private float gainAgroTime;
 
@@ -23,6 +24,7 @@ public class AiInput : MonoBehaviour
     private int _obstacleMask;
     private int _groundMask;
     private AiState _state;
+    private float _holdTriggerTimerMax;
 
     public Damageable Damageable => _character.Damageable;
 
@@ -42,6 +44,7 @@ public class AiInput : MonoBehaviour
 
     private void Start()
     {
+        _holdTriggerTimerMax = holdTriggerTimer;
         if (PanLevel.Instance.Started)
         {
             Setup();
@@ -77,6 +80,7 @@ public class AiInput : MonoBehaviour
     {
         Deactivated = false;
         _character.IntroDone = true;
+        GetComponentInChildren<Weapon>().isAIControlled = true;
     }
 
     void Update()
@@ -106,10 +110,16 @@ public class AiInput : MonoBehaviour
     {
         if (CanSeeTarget())
         {
-            _character.HoldTrigger();
+            if(holdTriggerTimer > 0)
+            {
+                _character.HoldTrigger();
+                holdTriggerTimer -= Time.deltaTime;
+                if (holdTriggerTimer <= 0) SetState(new AiStateSeek(this));
+            }
         }
         else
         {
+            if (holdTriggerTimer < _holdTriggerTimerMax) holdTriggerTimer += Time.deltaTime;
             _character.ReleaseTrigger();
         }
     }

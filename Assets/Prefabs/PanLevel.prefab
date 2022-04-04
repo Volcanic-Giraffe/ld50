@@ -125,6 +125,7 @@ MonoBehaviour:
     - {fileID: 3943801841136730571, guid: de779065e24704145bd3f368b7e055d6, type: 3}
     - {fileID: 608384528343153724, guid: b921bea1b2a80d048bf748596cf187b3, type: 3}
     - {fileID: 3743357199092098306, guid: 42506cdccc3490d438fb53bd66eaa89a, type: 3}
+    - {fileID: 3743357199092098306, guid: e988940eb9bcecd43b8cfd0fff3c53fe, type: 3}
     EnemiesMin: 1
     EnemiesMax: 2
     EnemiesLimit: 4
