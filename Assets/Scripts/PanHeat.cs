@@ -65,11 +65,11 @@ public class PanHeat : MonoBehaviour
 
         var bounds = other.bounds.size;
 
-        if (bounds.x + bounds.y + bounds.z < 2f)
-        {
-            //too small
-            return;
-        }
+        // if (bounds.x + bounds.y + bounds.z < 2f)
+        // {
+        //     //too small
+        //     return;
+        // }
         
         if (!_effects.ContainsKey(id))
         {
