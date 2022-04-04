@@ -5,6 +5,7 @@ public class Bullet : MonoBehaviour
 {
     public float Altitude;
     public GameObject ImpactGO;
+    public float GravityForce;
     
     public BulletConfig Config { get; private set; }
     
@@ -40,7 +41,15 @@ public class Bullet : MonoBehaviour
 
         if (raycast)
         {
-            _rig.MovePosition(hit.point + Vector3.up * Altitude);
+            var tPos = hit.point + Vector3.up * Altitude;
+            var step = GravityForce * Time.fixedDeltaTime;
+            
+            if (tPos.y + step < transform.position.y)
+            {
+                tPos = new Vector3(tPos.x, transform.position.y - step, tPos.z);
+            }
+            
+            _rig.MovePosition(tPos);
             
             // Debug.DrawLine (newPos, hit.point, Color.red);
         }
