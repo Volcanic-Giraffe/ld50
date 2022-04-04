@@ -119,7 +119,7 @@ public class Weapon : MonoBehaviour
     {
         if (IsFullClip) return;
         if (IsReloading) return;
-        if(!isAIControlled) _sounds.PlayRandom(config.SoundReload);
+        if(!isAIControlled && _sounds !=null) _sounds.PlayRandom(config.SoundReload);
 
         OnReloadStart?.Invoke();
         _reloadTimer = config.ReloadTime;
