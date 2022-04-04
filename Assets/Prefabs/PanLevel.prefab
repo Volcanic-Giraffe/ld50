@@ -96,6 +96,7 @@ MonoBehaviour:
     - {fileID: 3743357199092098306, guid: e988940eb9bcecd43b8cfd0fff3c53fe, type: 3}
     EnemiesMin: 5
     EnemiesMax: 7
+    EnemiesLimit: 0
     EnemiesSpacing: 2
     PropsGO:
     - {fileID: 7703831379575843592, guid: 2356e0e4c5f310e4db7bb901bcefbc86, type: 3}
@@ -126,6 +127,7 @@ MonoBehaviour:
     - {fileID: 3743357199092098306, guid: 42506cdccc3490d438fb53bd66eaa89a, type: 3}
     EnemiesMin: 1
     EnemiesMax: 2
+    EnemiesLimit: 4
     EnemiesSpacing: 2
     PropsGO:
     - {fileID: 7703831379575843592, guid: 2356e0e4c5f310e4db7bb901bcefbc86, type: 3}

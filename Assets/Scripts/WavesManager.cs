@@ -80,7 +80,7 @@ public class WavesManager : MonoBehaviour
         PanLevel.Instance.SpawnLevelWave(_nextWave);
         
         _nextWave.EnemiesMax += 1;
-        _nextWave.EnemiesMin += 1;
+        if (Random.value < 0.3f) _nextWave.EnemiesMin += 1;
 
         GameStats.Instance.WavesDone = _waveNumber - 1;
     }
