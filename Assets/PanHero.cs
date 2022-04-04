@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -23,12 +24,15 @@ public class PanHero : MonoBehaviour
     private float _dashTimer;
     private float _invTimer;
 
+    public bool IntroDone { get; set; }
+    
     public Damageable Damageable { get; private set; }
     public Weapon Weapon { get; private set; }
 
     public int Team => gameObject.GetInstanceID();
 
     public event Action<Weapon> OnWeaponSwitched;
+
     
     private void Awake()
     {
@@ -106,6 +110,8 @@ public class PanHero : MonoBehaviour
 
     public void AimAt(Vector3 target)
     {
+        if (!IntroDone) return;
+        
         var dir = target - handAnchor.transform.position;
 
         handAnchor.transform.right = dir;
@@ -115,6 +121,8 @@ public class PanHero : MonoBehaviour
     
     void Update()
     {
+        if (!IntroDone) return;
+        
         //transform.forward = Vector3.zero;
         if (_dashTimer > 0) _dashTimer -= Time.deltaTime;
         if (_invTimer > 0)
@@ -132,6 +140,8 @@ public class PanHero : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!IntroDone) return;
+        
         var ray = new Ray(transform.position, -transform.up); // cast ray downwards
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
@@ -166,6 +176,8 @@ public class PanHero : MonoBehaviour
 
     public void FixedMove(Vector3 inputs)
     {
+        if (!IntroDone) return;
+        
         // TODO does not work
         var r = _body.rotation;
         _body.MovePosition(_body.position + inputs * (Speed * Time.fixedDeltaTime));
@@ -192,5 +204,16 @@ public class PanHero : MonoBehaviour
         }
         
         OnWeaponSwitched?.Invoke(Weapon);
+    }
+
+    public void Intro()
+    {
+        var mPos = transform.position;
+        
+        _body.MovePosition(mPos + Vector3.up * 10f);
+        _body.DOMove(mPos, 1f).SetDelay(2f).OnComplete(() =>
+        {
+            IntroDone = true;
+        });
     }
 }

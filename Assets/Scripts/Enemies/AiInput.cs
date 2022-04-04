@@ -76,6 +76,7 @@ public class AiInput : MonoBehaviour
     private void Setup()
     {
         Deactivated = false;
+        _character.IntroDone = true;
     }
 
     void Update()
