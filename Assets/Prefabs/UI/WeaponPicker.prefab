@@ -655,6 +655,8 @@ MonoBehaviour:
   - Key: pistol
     Icon: {fileID: 21300000, guid: 0ae47c13cc2d4b64481b89d8a328c6d2, type: 3}
     NameIcon: {fileID: 21300000, guid: 48526b81da88f0c43bc2806598877b47, type: 3}
+    BulletUIcon: {fileID: 4991382979560760924, guid: 4177be7471cc72349810992caa3460a4,
+      type: 3}
     Name: Beangun
     Description: Rusty but trusty
     WeaponGO: {fileID: 7202756646448901804, guid: d331b172965b24045ad141541877f89e,
@@ -662,6 +664,8 @@ MonoBehaviour:
   - Key: shotgun
     Icon: {fileID: 21300000, guid: a69db737bbe0486418f2a7d8843bef5f, type: 3}
     NameIcon: {fileID: 21300000, guid: c0b0547c45b72e64e8fe6dd6e8b20f6b, type: 3}
+    BulletUIcon: {fileID: 16684959700859129, guid: 1239b4df6379f78428d2f60ad626a3e7,
+      type: 3}
     Name: Artishotgun
     Description: Stay back!
     WeaponGO: {fileID: 7980815112870357575, guid: bdb12e6292d34bc40bea3ce3a9079183,
@@ -669,6 +673,8 @@ MonoBehaviour:
   - Key: uzi
     Icon: {fileID: 21300000, guid: bd76517a725f4864d9bea3ac3b0c6c34, type: 3}
     NameIcon: {fileID: 21300000, guid: c999ed193638bc640b5f35ae86d5ea44, type: 3}
+    BulletUIcon: {fileID: 4208106052365764718, guid: a3fefbe21d7ac0844a534ce64c872eb2,
+      type: 3}
     Name: Cornzi
     Description: Deadly popcorn time
     WeaponGO: {fileID: 5059558084547752976, guid: bad4afe9192992f47a13d58afd035559,

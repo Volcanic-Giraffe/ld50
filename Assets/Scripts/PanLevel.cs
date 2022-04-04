@@ -86,13 +86,16 @@ public class PanLevel : MonoBehaviour
 
     public void PrepareLevel(HeroProfile pickedHero, WeaponProfile pickedGun)
     {
+        var ui = FindObjectOfType<LevelUI>();
         if (pickedHero != null)
         {
             Player.Intro();
             Player.ChangeBody(pickedHero.BodyData);
+            ui.UpdateHp(Player.Damageable.CurrentHealth, Player.Damageable.MaxHealth);
         }
         if (pickedGun != null)
         {
+            ui.setAmmoImage(pickedGun.BulletUIcon);
             Player.ChangeWeapon(pickedGun.WeaponGO);
         }
     }

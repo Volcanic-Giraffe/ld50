@@ -12,6 +12,7 @@ public class WeaponProfile
     public string Key;
     public Sprite Icon;
     public Sprite NameIcon;
+    public GameObject BulletUIcon;
     public string Name;
     public string Description;
     public GameObject WeaponGO;

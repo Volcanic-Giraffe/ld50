@@ -31,7 +31,7 @@ public class PanHero : MonoBehaviour
 
     public int Team => gameObject.GetInstanceID();
 
-    public event Action<Weapon> OnWeaponSwitched;
+    public event Action<Weapon, int> OnWeaponSwitched;
 
     
     private void Awake()
@@ -203,7 +203,7 @@ public class PanHero : MonoBehaviour
             Weapon.Team = Team;
         }
         
-        OnWeaponSwitched?.Invoke(Weapon);
+        OnWeaponSwitched?.Invoke(Weapon, Weapon.BulletsInClip);
     }
 
     public void Intro()

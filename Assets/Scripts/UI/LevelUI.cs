@@ -4,17 +4,19 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelUI : MonoBehaviour
 {
     public static LevelUI Instance;
     
     [SerializeField] private CanvasGroup group;
-    [SerializeField] private TextMeshProUGUI hpText;
-    [SerializeField] private TextMeshProUGUI ammoText;
+    [SerializeField] private Image hpBar;
+    [SerializeField] private RectTransform ammoPanel;
+    [SerializeField] private GameObject ammoPrefab;
+    [SerializeField] private Image Reload;
 
     [SerializeField] private TextMeshProUGUI enemiesText;
-
     [SerializeField] private TextMeshProUGUI killedText;
     [SerializeField] private TextMeshProUGUI waveText;
     
@@ -40,12 +42,34 @@ public class LevelUI : MonoBehaviour
 
         player.OnWeaponSwitched += OnWeaponSwitched;
 
-        OnWeaponSwitched(player.Weapon);
+        OnWeaponSwitched(player.Weapon, player.Weapon.BulletsInClip);
     }
 
-    private void OnWeaponSwitched(Weapon weapon)
+    private void OnWeaponSwitched(Weapon weapon, int bullets)
     {
+        Reload.gameObject.SetActive(false);
+
         weapon.OnClipUpdated += UpdateAmmo;
+        weapon.OnReloadStart += Weapon_OnReloadStart;
+        weapon.OnReloadEnd += Weapon_OnReloadEnd;
+        UpdateAmmo(bullets, 0);
+    }
+
+    private void Weapon_OnReloadEnd()
+    {
+        Reload.DOKill();
+        Reload.color = Color.white;
+        Reload.gameObject.SetActive(false);
+    }
+
+    private void Weapon_OnReloadStart()
+    {
+        foreach (RectTransform child in ammoPanel)
+        {
+            Destroy(child.gameObject);
+        }
+        Reload.DOFade(0, 0.6f).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
+        Reload.gameObject.SetActive(true);
     }
 
     public void Show()
@@ -53,21 +77,38 @@ public class LevelUI : MonoBehaviour
         @group.alpha = 1f;
     }
     
-    private void UpdateHp(float current, float max)
+    public void UpdateHp(float current, float max)
     {
-        hpText.SetText($"hp: {current}/{max}");
-        hpText.transform.DOPunchScale(Vector3.one * 0.1f, 0.3f);
+        hpBar.fillAmount = current / max;
+        hpBar.rectTransform.DOPunchScale(Vector3.one * 0.1f, 0.3f);
     }
 
-    private void UpdateAmmo(int current, int max)
+    public void setAmmoImage(GameObject image)
     {
-        ammoText.SetText($"{current}/{max}");
-        if (current == max || current == 0)
-        {
-            ammoText.transform.DOPunchScale(Vector3.one * 0.1f, 0.3f);
-        }
+        ammoPrefab = image;
+    }
+    private void UpdateAmmo(int current, int max = 0)
+    {
+        if (!ammoPrefab) return;
 
-        ammoText.color = current == 0 ? Color.red : Color.white;
+        if(ammoPanel.childCount > current)
+        {
+            Destroy(ammoPanel.GetChild(ammoPanel.childCount - 1).gameObject);
+        } 
+        else 
+        {
+            foreach (RectTransform child in ammoPanel)
+            {
+                Destroy(child.gameObject);
+            }
+            for (int i = 0; i < current; i++)
+            {
+                var ammo = Instantiate(ammoPrefab);
+                ammo.transform.SetParent(ammoPanel);
+                var rt = ammo.GetComponent<RectTransform>();
+                rt.anchoredPosition = new Vector2(0, -i * rt.sizeDelta.y * 0.5f);
+            }
+        }
     }
 
     private void Update()

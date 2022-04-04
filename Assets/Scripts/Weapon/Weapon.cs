@@ -17,6 +17,8 @@ public class Weapon : MonoBehaviour
     private float _muzzleFlashTimer;
 
     public event Action<int, int> OnClipUpdated;
+    public event Action OnReloadStart;
+    public event Action OnReloadEnd;
 
     public Transform Muzzle => muzzle;
     public WeaponConfig Config => config;
@@ -47,6 +49,7 @@ public class Weapon : MonoBehaviour
             _reloadTimer -= Time.deltaTime;
             if (_reloadTimer <= 0)
             {
+                OnReloadEnd?.Invoke();
                 Sounds.Instance.PlayRandom(config.SoundReload);
                 SetBulletsInClip(config.ClipSize);
             }
@@ -113,6 +116,7 @@ public class Weapon : MonoBehaviour
         if (IsFullClip) return;
         if (IsReloading) return;
 
+        OnReloadStart?.Invoke();
         _reloadTimer = config.ReloadTime;
     }
 
