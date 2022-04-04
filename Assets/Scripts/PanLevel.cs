@@ -38,6 +38,7 @@ public class PanLevel : MonoBehaviour
     public event Action OnEnemiesKilled;
 
     public bool Started { get; set; }
+    public bool Failed { get; set; }
 
     private void Awake()
     {
@@ -63,6 +64,14 @@ public class PanLevel : MonoBehaviour
             BeginLevel();
         }
 
+    }
+
+    private void Update()
+    {
+        if (Failed && Input.GetKeyDown(KeyCode.R))
+        {
+            RestartLevel();
+        }
     }
 
     public void BeginIntro(HeroProfile pickedHero, WeaponProfile pickedGun)
@@ -110,6 +119,8 @@ public class PanLevel : MonoBehaviour
     private void LevelFailed()
     {
         Started = false;
+        Failed = true;
+        
         FindObjectOfType<FailUI>().ShowAnimated();
     }
 
