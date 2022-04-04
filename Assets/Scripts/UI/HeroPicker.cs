@@ -75,7 +75,7 @@ public class HeroPicker : MonoBehaviour
             iconBgRect.DOKill();
             iconBgRect.DOAnchorPosY(_iconBgOriginY - 10, 0.1f).OnComplete(() =>
             {
-                iconBgRect.DOAnchorPosY(_iconBgOriginY, 0.1f);
+                if (iconBgRect!=null) iconBgRect.DOAnchorPosY(_iconBgOriginY, 0.1f);
             });
 
             icon.transform.DOKill();
@@ -89,4 +89,5 @@ public class HeroPicker : MonoBehaviour
     {
         return options[_selected];
     }
+    
 }

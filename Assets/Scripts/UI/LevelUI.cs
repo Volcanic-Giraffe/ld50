@@ -66,10 +66,11 @@ public class LevelUI : MonoBehaviour
     {
         foreach (RectTransform child in ammoPanel)
         {
+            child.gameObject.SetActive(false);
             Destroy(child.gameObject);
         }
-        Reload.DOFade(0, 0.6f).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
         Reload.gameObject.SetActive(true);
+        Reload.DOFade(0, 0.6f).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
     }
 
     public void Show()
@@ -96,6 +97,12 @@ public class LevelUI : MonoBehaviour
         if(ammoPanel.childCount > current)
         {
             var c = ammoPanel.GetChild(ammoPanel.childCount - 1);
+
+            if (!c.gameObject.activeSelf)
+            {
+                return;
+            }
+            
             var rt = c.GetComponent<RectTransform>();
             rt.SetParent(ammoPanel.parent);
             c.GetComponent<Image>().DOFade(0, 0.2f);

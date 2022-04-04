@@ -58,8 +58,9 @@ public class VegetableBody : MonoBehaviour
         body.transform.position = transform.position;
         StopAllCoroutines();
         BodySprite.DOKill();
-        PupilLeft.DOKill();
-        PupilRight.DOKill();
+        
+        PupilLeft.transform.DOKill();
+        PupilRight.transform.DOKill();
     }
 
     private void _dmg_OnHit(HitInfo hitInfo)
@@ -85,8 +86,10 @@ public class VegetableBody : MonoBehaviour
 
     private void MovePupilsRandomly()
     {
-        PupilLeft.DOKill();
-        PupilRight.DOKill();
+        if (PupilLeft == null || PupilRight == null) return;
+        
+        PupilLeft.transform.DOKill();
+        PupilRight.transform.DOKill();
         var target = new Vector3(Random.Range(PupilLimit, -PupilLimit), Random.Range(PupilLimit, -PupilLimit),PupilLeft.transform.localPosition.z);
         PupilLeft.transform.DOLocalMove(target, Random.Range(0.1f, 0.9f));
         if(Random.value > 0.8f) {target = new Vector3(Random.Range(PupilLimit, -PupilLimit), Random.Range(PupilLimit, -PupilLimit), PupilLeft.transform.localPosition.z); }
@@ -201,6 +204,8 @@ public class VegetableBody : MonoBehaviour
 
     private void UpdatePupils()
     {
+        if (_dmg.Died) return;
+        
         if (_mouthTimer > 0) _mouthTimer -= Time.deltaTime;
         if(_mouthTimer <= 0)
         {
