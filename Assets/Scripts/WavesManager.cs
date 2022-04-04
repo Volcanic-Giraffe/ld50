@@ -45,14 +45,25 @@ public class WavesManager : MonoBehaviour
             SpawnNextWave();
         }
 
+        UpdatePanHeat();
+        UpdatePanFlip();
+    }
 
+    private void UpdatePanHeat()
+    {
+        if (!PanLevel.Instance.Started) return;
+        
         heatTimer -= Time.deltaTime;
         if (heatTimer <= 0)
         {
             heatTimer = Random.Range(heatRiseMin, heatRiseMax);
             PanLevel.Instance.Pan.IncreaseHeat();
         }
-        
+    }
+    
+    private void UpdatePanFlip()
+    {
+        if (!PanLevel.Instance.Started) return;
         
         flipTimer -= Time.deltaTime;
         if (flipTimer <= 0)

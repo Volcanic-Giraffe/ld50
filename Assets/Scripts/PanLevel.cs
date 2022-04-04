@@ -36,8 +36,8 @@ public class PanLevel : MonoBehaviour
     public event Action OnLevelStarted;
     public event Action OnEnemiesKilled;
 
-    public bool Started;
-    
+    public bool Started { get; set; }
+
     private void Awake()
     {
         Instance = FindObjectOfType<PanLevel>();

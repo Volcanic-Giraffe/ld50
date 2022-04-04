@@ -9,7 +9,7 @@ public class AiInput : MonoBehaviour
 
     [SerializeField] private float gainAgroTime;
 
-    private const int NewPositionAttempts = 5;
+    private const int NewPositionAttempts = 10;
     private const float PositionReachRadius = 1.0f;
     
     private PanHero _character;
@@ -168,6 +168,10 @@ public class AiInput : MonoBehaviour
             var z = Mathf.Sin(angle) * newPositionRadius;
 
             var candidate = transform.position + new Vector3(x, 5f, z); // +5 so always above the pan
+
+            var center = new Vector3(0, candidate.y, 0);
+
+            if (Vector3.Distance(center, candidate) > Pan.Radius - 0.5f) continue;
             
             var raycast = Physics.Raycast(candidate, -Vector3.up, out var hit, 10f, _groundMask);
 

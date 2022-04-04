@@ -140,6 +140,28 @@ public class PanHero : MonoBehaviour
             // transform.up = hit.normal;
         }
 
+        FixedTeleportToZero();
+    }
+
+    private void FixedTeleportToZero()
+    {
+        var mPos = transform.position;
+
+        var center = new Vector3(0, mPos.y, 0);
+
+        var maxRadius = Pan.Radius + 1f;
+        
+        var escapedPan = Vector3.Distance(mPos, center) > maxRadius;
+        var fellDown = transform.position.y < -maxRadius;
+        
+        if (escapedPan || fellDown)
+        {
+            var tele = new Vector3(0, 10f, 0);
+            
+            _body.MovePosition(tele);
+            _body.velocity = Vector3.zero;
+            _body.angularVelocity = Vector3.zero;
+        }
     }
 
     public void FixedMove(Vector3 inputs)

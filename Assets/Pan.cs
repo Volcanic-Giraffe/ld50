@@ -5,6 +5,8 @@ using Random = UnityEngine.Random;
 
 public class Pan : MonoBehaviour
 {
+    public static float Radius = 16f;
+    
     [SerializeField] private PanHeat heat;
     [SerializeField] private float heatIncrementY;
     [SerializeField] private float heatMaxLocalY;
