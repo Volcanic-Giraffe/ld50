@@ -28,6 +28,11 @@ public class HumanInput : MonoBehaviour
             PanLevel.Instance.OnLevelStarted += OnLevelStarted;
         }
         
+        _hero.Damageable.OnHit += info =>
+        {
+            Sounds.Instance.PlayRandom("hit_02");
+        };
+        
     }
 
     private void OnLevelStarted()
