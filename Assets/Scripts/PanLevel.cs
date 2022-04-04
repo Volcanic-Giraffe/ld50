@@ -169,6 +169,8 @@ public class PanLevel : MonoBehaviour
         
         // enemies
         var enemiesCount = Random.Range(config.EnemiesMin, config.EnemiesMax);
+        if (enemiesCount > config.EnemiesLimit) enemiesCount = config.EnemiesLimit;
+        
         for (int i = 0; i < enemiesCount; i++)
         {
             var enemyGO =  config.EnemiesGO.PickRandom();
@@ -251,6 +253,7 @@ public class LevelGenParams
     public List<GameObject> EnemiesGO;
     public int EnemiesMin;
     public int EnemiesMax;
+    public int EnemiesLimit;
     public float EnemiesSpacing;
 
     public List<GameObject> PropsGO;
