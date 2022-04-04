@@ -11,6 +11,7 @@ public class WeaponProfile
 {
     public string Key;
     public Sprite Icon;
+    public Sprite NameIcon;
     public string Name;
     public string Description;
     public GameObject WeaponGO;
@@ -20,7 +21,7 @@ public class WeaponPicker : MonoBehaviour
 {
     [SerializeField] private List<WeaponProfile> options;
     [SerializeField] private Image icon;
-    [SerializeField] private TextMeshProUGUI nameText;
+    [SerializeField] private Image nameText;
     [SerializeField] private TextMeshProUGUI descriptionText;
 
     [SerializeField] private RectTransform buttonLeftHolder;
@@ -58,7 +59,8 @@ public class WeaponPicker : MonoBehaviour
         icon.sprite = option.Icon;
         icon.SetNativeSize();
         
-        nameText.SetText(option.Name);
+        nameText.sprite = option.NameIcon;
+        nameText.SetNativeSize();
         descriptionText.SetText(option.Description);
 
         if (animate)

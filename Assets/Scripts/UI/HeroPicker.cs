@@ -11,6 +11,7 @@ public class HeroProfile
 {
     public string Key;
     public Sprite Icon;
+    public Sprite NameImage;
     public string Name;
     public string Description;
     public BodyDataSO BodyData;
@@ -20,7 +21,7 @@ public class HeroPicker : MonoBehaviour
 {
     [SerializeField] private List<HeroProfile> options;
     [SerializeField] private Image icon;
-    [SerializeField] private TextMeshProUGUI nameText;
+    [SerializeField] private Image nameText;
     [SerializeField] private TextMeshProUGUI descriptionText;
 
     [SerializeField] private RectTransform buttonLeftHolder;
@@ -66,7 +67,7 @@ public class HeroPicker : MonoBehaviour
         icon.sprite = option.Icon;
         icon.SetNativeSize();
         
-        nameText.SetText(option.Name);
+        nameText.sprite = option.NameImage;
         descriptionText.SetText(option.Description);
 
         if (animate)
