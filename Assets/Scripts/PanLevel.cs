@@ -72,6 +72,18 @@ public class PanLevel : MonoBehaviour
         {
             RestartLevel();
         }
+        
+        if (Input.GetButtonDown("Cancel"))
+        {
+            if (Started)
+            {
+                RestartLevel();
+            }
+            else
+            {
+                Application.Quit();
+            }
+        }
     }
 
     public void BeginIntro(HeroProfile pickedHero, WeaponProfile pickedGun)
