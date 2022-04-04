@@ -45,6 +45,7 @@ public class HumanInput : MonoBehaviour
     void Update()
     {
         if (Deactivated) return;
+        if (PanLevel.Instance.Failed) return;
         
         if (_hero != null)
         {
@@ -91,6 +92,7 @@ public class HumanInput : MonoBehaviour
     private void FixedUpdate()
     {
         if (Deactivated) return;
+        if (PanLevel.Instance.Failed) return;
         
         _hero.FixedMove(_inputs);
     }
