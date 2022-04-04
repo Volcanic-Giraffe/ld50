@@ -9,8 +9,6 @@ public class AiInput : MonoBehaviour
     [SerializeField] private float agroBurstTime;
     [SerializeField] private float agroRestTime;
     
-    [SerializeField] private float dashTime;
-    
     [SerializeField] private float gainAgroTime;
 
     private const int NewPositionAttempts = 10;
@@ -27,9 +25,10 @@ public class AiInput : MonoBehaviour
     private int _obstacleMask;
     private int _groundMask;
     private AiState _state;
-    private float _holdTriggerTimerMax;
 
     private float _dashTimer;
+    private float _dashActiveTimer;
+    private Vector3 _dashDir;
     
     public Damageable Damageable => _character.Damageable;
 
@@ -131,6 +130,20 @@ public class AiInput : MonoBehaviour
         _character.ReleaseTrigger();
     }
 
+    public void Dash()
+    {
+        if (_dashActiveTimer > 0) return;
+        
+        int x = Random.Range(-1, 1);
+        int z = Random.Range(-1, 1);
+        
+        _dashDir = new Vector3(x, 0, z).normalized;
+        
+        _character.Dash(_dashDir);
+
+        _dashActiveTimer = 0.3f;
+    }
+    
     public bool CanSeeTarget()
     {
         if (_target == null)
@@ -163,6 +176,13 @@ public class AiInput : MonoBehaviour
 
     public void FixedMoveToTarget()
     {
+        if (_dashActiveTimer > 0)
+        {
+            _dashActiveTimer -= Time.fixedDeltaTime;
+            _character.FixedMove(_dashDir);
+            return;
+        }
+        
         var mPos = new Vector3(transform.position.x, 0, transform.position.y);
         var tPos = new Vector3(_targetPos.x, 0, _targetPos.y);
         
@@ -366,8 +386,9 @@ public class AiStateAgro : AiState
 
                 if (_deagroTimer <= 0)
                 {
+                    _owner.Dash();
                     _owner.StopShooting();
-                    _owner.SetState(new AiStateIdle(_owner));
+                    _owner.SetState(new AiStateSeek(_owner));
                 }
             }
         }
