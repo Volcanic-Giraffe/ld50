@@ -40,6 +40,8 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
+        if (!PanLevel.Instance.Started) return;
+
         if (_reloadTimer > 0)
         {
             _reloadTimer -= Time.deltaTime;

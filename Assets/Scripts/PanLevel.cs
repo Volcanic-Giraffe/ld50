@@ -63,6 +63,14 @@ public class PanLevel : MonoBehaviour
 
     }
 
+    public void BeginIntro(HeroProfile pickedHero, WeaponProfile pickedGun)
+    {
+        GetComponent<LevelIntro>().BeginIntro(() =>
+        {
+            BeginLevel(pickedHero, pickedGun);
+        });
+    }
+
     public void BeginLevel(HeroProfile pickedHero, WeaponProfile pickedGun)
     {
         if (pickedHero != null)
