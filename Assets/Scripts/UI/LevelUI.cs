@@ -80,6 +80,8 @@ public class LevelUI : MonoBehaviour
     public void UpdateHp(float current, float max)
     {
         hpBar.fillAmount = current / max;
+        hpBar.rectTransform.DOKill();
+        hpBar.rectTransform.localScale = Vector3.one;
         hpBar.rectTransform.DOPunchScale(Vector3.one * 0.1f, 0.3f);
     }
 
