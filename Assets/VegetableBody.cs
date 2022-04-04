@@ -75,7 +75,7 @@ public class VegetableBody : MonoBehaviour
         if (Random.value > 0.92)
         {
             _sounds.PlayRandom("scream");
-        } else if(Random.value > 0.6)
+        } else if(Random.value > 0.8)
         {
             _sounds.PlayRandom("grunt");
         }
