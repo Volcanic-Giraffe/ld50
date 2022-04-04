@@ -6,8 +6,11 @@ public class AiInput : MonoBehaviour
     [SerializeField] private float holdPositionTime;
     [SerializeField] private float holdPositionTimeSpread;
     [SerializeField] private float newPositionRadius;
-    [SerializeField] private float holdTriggerTimer = 3;
-
+    [SerializeField] private float agroBurstTime;
+    [SerializeField] private float agroRestTime;
+    
+    [SerializeField] private float dashTime;
+    
     [SerializeField] private float gainAgroTime;
 
     private const int NewPositionAttempts = 10;
@@ -26,9 +29,15 @@ public class AiInput : MonoBehaviour
     private AiState _state;
     private float _holdTriggerTimerMax;
 
+    private float _dashTimer;
+    
     public Damageable Damageable => _character.Damageable;
 
     public float GainAgroTime => gainAgroTime;
+    
+    public float AgroBurstTime => agroBurstTime;
+    public float AgroRestTime => agroRestTime;
+
     
     public bool Deactivated { get; set; }
     
@@ -44,7 +53,6 @@ public class AiInput : MonoBehaviour
 
     private void Start()
     {
-        _holdTriggerTimerMax = holdTriggerTimer;
         if (PanLevel.Instance.Started)
         {
             Setup();
@@ -110,18 +118,17 @@ public class AiInput : MonoBehaviour
     {
         if (CanSeeTarget())
         {
-            if(holdTriggerTimer > 0)
-            {
-                _character.HoldTrigger();
-                holdTriggerTimer -= Time.deltaTime;
-                if (holdTriggerTimer <= 0) SetState(new AiStateSeek(this));
-            }
+            _character.HoldTrigger();
         }
         else
         {
-            if (holdTriggerTimer < _holdTriggerTimerMax) holdTriggerTimer += Time.deltaTime;
             _character.ReleaseTrigger();
         }
+    }
+
+    public void StopShooting()
+    {
+        _character.ReleaseTrigger();
     }
 
     public bool CanSeeTarget()
@@ -313,11 +320,17 @@ public class AiStateAgro : AiState
     private float _deagroTimer;
 
     private float _warningTimer;
+
+    private float _burstOnTimer;
+    private float _burstOffTimer;
+
     
     public AiStateAgro(AiInput owner) : base(owner)
     {
         _deagroTimer = Random.Range(1f, 3f);
         _warningTimer = 1.2f;
+
+        _burstOnTimer = owner.AgroBurstTime;
     }
 
     public override void Update()
@@ -329,13 +342,33 @@ public class AiStateAgro : AiState
 
         if (_warningTimer <= 0)
         {
-            _owner.UpdateShootTarget();
-            
-            _deagroTimer -= Time.deltaTime;
-
-            if (_deagroTimer <= 0)
+            if (_burstOffTimer > 0)
             {
-                _owner.SetState(new AiStateIdle(_owner));
+                _owner.StopShooting();
+                _burstOffTimer -= Time.deltaTime;
+
+                if (_burstOffTimer <= 0) _burstOnTimer = _owner.AgroBurstTime;
+                
+                return;
+            }
+            
+            if (_burstOnTimer > 0 || _owner.AgroBurstTime == 0)
+            {
+                _burstOnTimer -= Time.deltaTime;
+                _owner.UpdateShootTarget();
+
+                if (_burstOnTimer <= 0)
+                {
+                    _burstOffTimer = _owner.AgroRestTime;
+                }
+                
+                _deagroTimer -= Time.deltaTime;
+
+                if (_deagroTimer <= 0)
+                {
+                    _owner.StopShooting();
+                    _owner.SetState(new AiStateIdle(_owner));
+                }
             }
         }
         
