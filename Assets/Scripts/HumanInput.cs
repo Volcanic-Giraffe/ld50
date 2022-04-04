@@ -6,7 +6,7 @@ using UnityEngine;
 public class HumanInput : MonoBehaviour
 {
     private PanHero _hero;
-
+    private Sounds _sounds;
     private Vector3 _inputs = Vector3.zero;
     
     public bool Deactivated { get; set; }
@@ -15,6 +15,7 @@ public class HumanInput : MonoBehaviour
     {
         Deactivated = true;
         _hero = GetComponent<PanHero>();
+        _sounds = GetComponentInChildren<Sounds>() ?? Sounds.Instance;
     }
 
     void Start()
@@ -30,7 +31,7 @@ public class HumanInput : MonoBehaviour
         
         _hero.Damageable.OnHit += info =>
         {
-            Sounds.Instance.PlayRandom("hit_02");
+            _sounds.PlayRandom("hit_02");
         };
         
     }

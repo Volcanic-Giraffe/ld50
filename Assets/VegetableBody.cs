@@ -15,6 +15,7 @@ public class VegetableBody : MonoBehaviour
     [SerializeField] SpriteRenderer Mouth;
     [SerializeField] GameObject PiecePrefab;
     [SerializeField] Animator mouthAnim;
+    private Sounds _sounds;
     private Damageable _dmg;
     private Rigidbody _rb;
     private float bodySwitchTimer = 0;
@@ -38,6 +39,7 @@ public class VegetableBody : MonoBehaviour
 
     void Start()
     {
+        _sounds = GetComponentInChildren<Sounds>() ?? _sounds;
         _dmg = GetComponent<Damageable>();
         _dmg.OnHit += _dmg_OnHit;
         _dmg.OnDie += _dmg_OnDie;
@@ -68,6 +70,14 @@ public class VegetableBody : MonoBehaviour
             var rnd = Random.Range(0.5f, 3f);
             PupilLeft.transform.localScale = new Vector3(rnd, rnd, rnd);
             PupilRight.transform.localScale = new Vector3(rnd, rnd, rnd);
+        }
+
+        if (Random.value > 0.92)
+        {
+            _sounds.PlayRandom("scream");
+        } else if(Random.value > 0.6)
+        {
+            _sounds.PlayRandom("grunt");
         }
 
         StartCoroutine(Flash(hitInfo));

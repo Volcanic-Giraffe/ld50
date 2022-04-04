@@ -7,6 +7,8 @@ using Random = UnityEngine.Random;
 
 public class Sounds : MonoBehaviour
 {
+    [SerializeField] bool isGlobal;
+
     public static Sounds Instance;
     
     public AudioSource aSource;
@@ -23,7 +25,8 @@ public class Sounds : MonoBehaviour
     
     private void Awake()
     {
-        Instance = FindObjectOfType<Sounds>();
+        // Use global for centered sounds, use local instance for 3D sounds 
+        if (!isGlobal) Instance = FindObjectOfType<Sounds>();
         
         _soundsByPrefix = new Dictionary<string, List<AudioClip>>();
         _soundsByName = new Dictionary<string, AudioClip>();

@@ -15,6 +15,7 @@ public class Weapon : MonoBehaviour
 
     private int _bulletsInClip;
     private float _muzzleFlashTimer;
+    private Sounds _sounds;
 
     public event Action<int, int> OnClipUpdated;
     public event Action OnReloadStart;
@@ -31,6 +32,7 @@ public class Weapon : MonoBehaviour
     public bool isAIControlled { get; set; }
     private void Start()
     {
+        _sounds = GetComponentInChildren<Sounds>() ?? Sounds.Instance;
         SetBulletsInClip(config.ClipSize);
         var sprc = GetComponentInChildren<WeaponSpriteController>();
         if(sprc != null)
@@ -52,7 +54,7 @@ public class Weapon : MonoBehaviour
                 OnReloadEnd?.Invoke();
                 // Нужен определенный нерандомный звук, чтобы понимать, что перезарядка началась 
                 // и другой, что кончилась. Сейчас у всех пушек в конце gun_reload_01, потому что передергивание затвора
-                if (!isAIControlled) Sounds.Instance.PlayRandom(config.SoundReloadEnd);
+                if (!isAIControlled) _sounds.PlayRandom(config.SoundReloadEnd);
                 SetBulletsInClip(config.ClipSize);
             }
         }
@@ -98,7 +100,7 @@ public class Weapon : MonoBehaviour
             if (!Config.Auto) ReleaseTrigger();
         }
         
-        Sounds.Instance.PlayRandom(config.SoundShot);
+        _sounds.PlayRandom(config.SoundShot);
         
         SetBulletsInClip(_bulletsInClip - 1);
     }
@@ -117,7 +119,7 @@ public class Weapon : MonoBehaviour
     {
         if (IsFullClip) return;
         if (IsReloading) return;
-        if(!isAIControlled) Sounds.Instance.PlayRandom(config.SoundReload);
+        if(!isAIControlled) _sounds.PlayRandom(config.SoundReload);
 
         OnReloadStart?.Invoke();
         _reloadTimer = config.ReloadTime;
