@@ -18,4 +18,5 @@ public class BodyDataSO : ScriptableObject
     public Sprite Dead;
     public Color PieceTint;
     public Vector3 EyeOffset;
+    public GameObject BodyPrefab;
 }

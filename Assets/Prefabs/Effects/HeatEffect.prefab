@@ -4877,4 +4877,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particles: {fileID: 6496850339031591507}
   damageTime: 0.9
-  damagePerTime: 1
+  damagePerTime: 3

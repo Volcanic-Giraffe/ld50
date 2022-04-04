@@ -93,12 +93,17 @@ public class LevelUI : MonoBehaviour
 
         if(ammoPanel.childCount > current)
         {
-            Destroy(ammoPanel.GetChild(ammoPanel.childCount - 1).gameObject);
+            var c = ammoPanel.GetChild(ammoPanel.childCount - 1);
+            var rt = c.GetComponent<RectTransform>();
+            rt.SetParent(ammoPanel.parent);
+            c.GetComponent<Image>().DOFade(0, 0.2f);
+            rt.DOPunchScale(Vector3.one * 0.1f, 0.3f).OnComplete(() => Destroy(rt.gameObject));
         } 
         else 
         {
             foreach (RectTransform child in ammoPanel)
             {
+                child.DOKill();
                 Destroy(child.gameObject);
             }
             for (int i = 0; i < current; i++)

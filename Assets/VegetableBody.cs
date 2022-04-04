@@ -52,6 +52,8 @@ public class VegetableBody : MonoBehaviour
 
     private void _dmg_OnDie()
     {
+        var body = Instantiate(BodyData.BodyPrefab);
+        body.transform.position = transform.position;
         StopAllCoroutines();
         BodySprite.DOKill();
         PupilLeft.DOKill();

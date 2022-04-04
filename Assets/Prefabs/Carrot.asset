@@ -24,3 +24,6 @@ MonoBehaviour:
   Rot3: {fileID: 21300000, guid: 65df26c1ca6a29442b4063684f619c08, type: 3}
   Dead: {fileID: 21300000, guid: a90eab70883746e489ff1042d9d3b67b, type: 3}
   PieceTint: {r: 0.8196079, g: 0.5019608, b: 0.14509805, a: 1}
+  EyeOffset: {x: 0, y: 0, z: 0}
+  BodyPrefab: {fileID: 758121269568828722, guid: 567d0df410bcb0243b993ea1d2190f2f,
+    type: 3}
