@@ -56,7 +56,7 @@ public class AiInput : MonoBehaviour
 
         SetState(new AiStateIdle(this));
 
-        _character.Damageable.OnHit += () =>
+        _character.Damageable.OnHit += (hitInfo) =>
         {
             _state.GotHit();
         };

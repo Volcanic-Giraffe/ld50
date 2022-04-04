@@ -29,7 +29,7 @@ public class LevelUI : MonoBehaviour
         
         var player = PanLevel.Instance.Player;
 
-        player.Damageable.OnHit += () =>
+        player.Damageable.OnHit += (hitInfo) =>
         {
             UpdateHp(player.Damageable.CurrentHealth, player.Damageable.MaxHealth);
         };

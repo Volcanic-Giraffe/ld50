@@ -58,7 +58,7 @@ public class VegetableBody : MonoBehaviour
         PupilRight.DOKill();
     }
 
-    private void _dmg_OnHit()
+    private void _dmg_OnHit(HitInfo hitInfo)
     {
         if (_mouthCR != null) StopCoroutine(_mouthCR);
         _prs.Pick();
@@ -67,7 +67,8 @@ public class VegetableBody : MonoBehaviour
             PupilLeft.transform.localScale = new Vector3(rnd, rnd, rnd);
             PupilRight.transform.localScale = new Vector3(rnd, rnd, rnd);
         }
-        StartCoroutine(Flash());
+
+        StartCoroutine(Flash(hitInfo));
     }
 
     private void MovePupilsRandomly()
@@ -80,19 +81,24 @@ public class VegetableBody : MonoBehaviour
         PupilRight.transform.DOLocalMove(target, Random.Range(0.1f, 0.9f));
     }
 
-    IEnumerator Flash()
+    IEnumerator Flash(HitInfo hitInfo)
     {
-        var amnt = Random.Range(1, 3);
-        for (int i = 0; i < amnt; i++)
+        if (!hitInfo.HeatDamage)
         {
-            var p = Instantiate(PiecePrefab);
-            p.transform.position = transform.position + new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.2f, 0.5f), Random.Range(-0.5f, 0.5f));
-            p.GetComponentInChildren<SpriteRenderer>().color = bodyData.PieceTint;
-            p.GetComponent<Rigidbody>().AddExplosionForce(10, transform.position, 1);
+            var amnt = Random.Range(1, 3);
+            for (int i = 0; i < amnt; i++)
+            {
+                var p = Instantiate(PiecePrefab);
+                p.transform.position = transform.position + new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.2f, 0.5f), Random.Range(-0.5f, 0.5f));
+                p.GetComponentInChildren<SpriteRenderer>().color = bodyData.PieceTint;
+                p.GetComponent<Rigidbody>().AddExplosionForce(10, transform.position, 1);
+            }
         }
+
+        var hitColor = hitInfo.HeatDamage ? Color.red : Color.black;
         
         BodySprite.DOKill();
-        yield return BodySprite.DOColor(Color.black, 0.05f).WaitForCompletion();
+        yield return BodySprite.DOColor(hitColor, 0.05f).WaitForCompletion();
         yield return BodySprite.DOColor(Color.white, 0.1f).WaitForCompletion();
     }
 

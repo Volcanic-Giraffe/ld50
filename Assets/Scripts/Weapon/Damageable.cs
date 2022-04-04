@@ -14,18 +14,21 @@ public class Damageable : MonoBehaviour
 
     private bool _died;
 
-    public event Action OnHit;
+    public event Action<HitInfo> OnHit;
     public event Action OnDie;
     
     public int Team { get; set; }
 
-    public void Hit(GameObject source, float damage)
+    public void Hit(float damage, bool heatDamage)
     {
         if (_died || Invulnerable) return;
 
         health -= damage;
 
-        OnHit?.Invoke();
+        OnHit?.Invoke(new HitInfo()
+        {
+            HeatDamage = heatDamage
+        });
         
         if (health <= 0)
         {
@@ -51,4 +54,10 @@ public class Damageable : MonoBehaviour
         
         Destroy(gameObject);
     }
+}
+
+
+public class HitInfo
+{
+    public bool HeatDamage;
 }

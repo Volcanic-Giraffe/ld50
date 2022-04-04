@@ -61,7 +61,7 @@ public class Bullet : MonoBehaviour
         
         if (dmg != null && CanAttack(Team, dmg.Team))
         {
-            dmg.Hit(gameObject, Config.Damage);
+            dmg.Hit(Config.Damage, false);
 
             if (ImpactGO != null)
             {
