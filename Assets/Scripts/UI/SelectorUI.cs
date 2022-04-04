@@ -20,7 +20,7 @@ public class SelectorUI : MonoBehaviour
 
     public void OnStartClicked()
     {
-        Sounds.Instance.PlayRandom("click_a");
+        Sounds.Instance.PlayRandom("gun_01");
         PanLevel.Instance.BeginIntro(heroPicker.GetSelection(), weaponPicker.GetSelection());
         Hide();
     }

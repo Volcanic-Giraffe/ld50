@@ -486,6 +486,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleMod: 1.1
+  attentionDelay: 0
+  attentionAngle: 0
+  attentionDirection: 0
 --- !u!1 &9218886744747991531
 GameObject:
   m_ObjectHideFlags: 0
